@@ -64,12 +64,30 @@ public class Permutations {
 ----
 Il y a une façon plus efficace de trouver toutes les permutations d'une séquence de lettres,
 mais ce n'est pas notre sujet pour le moment.
-Ce qui est sûr, c'est que l'exécution suit un chemin unique,
-entièrement déterminé par les instructions et les données d'entrée.
-L'algorithme produit toujours les mêmes sorties en suivant exactement les mêmes étapes.
-Mais est-ce toujours le cas pour d'autres types de problèmes ?
 
-*La repose est strictement non!.*
+*Ce qui est sûr, c'est que l'exécution suit un chemin unique, entièrement déterminé par
+les instructions et les données d'entrée.*
+
+
+Mais imaginez maintenant que nous devons trouver la meilleure solution pour le problème Suivant :
+Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois, avant de revenir à sa ville de départ.
+Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale
+parcourue (ou, dans certaines variantes, le coût total).
+
+Si on veux une representation mathematics de ce problème, on peut le définir comme suit :
+Soit 𝑉 = {1, 2, ..., 𝑛} l'ensemble des villes à visiter, et 𝑑(𝑖, 𝑗) la distance entre les villes 𝑖 et 𝑗.
+Une matrice de distance D est définie telle que 𝐷[𝑖, 𝑗] = 𝑑(𝑖, 𝑗) pour tout 𝑖, 𝑗 ∈ 𝑉.
+
+En sortie nous aurons besoin de trouver une permutation 𝜋 = (𝜋1, 𝜋2, ..., 𝜋𝑛) de l'ensemble 𝑉 telle que
+le cout total de la tournée soit minimal, c'est-à-dire que la somme des distances entre les villes successives
+Cout totale:  stem:[\text{CT}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\] + D[\pi_n, \pi_1\]]
+
+Et si on calcule la complexité de ce problème, on trouve qu'il est de l'ordre de O(n!) ce qui est très couteux car :
+
+Par exemple, pour 𝑛 = 10 n=10, il y a 9!= 362,880 9!=362,880 chemins à explorer.
+Pour 𝑛 = 20 n=20, 19!≈ 1.22 × 1 0 17 19!≈1.22×10 17 , ce qui devient ingérable pour un ordinateur.
+
+On appel ce problème le problème du voyageur de commerce *(TSP, Travelling Salesman Problem)*
 
 == Introduction
 Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux
@@ -136,57 +154,58 @@ on utilise un critère de fitness pour évaluer et comparer les solutions, perme
 les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
 
 == Les Algorithmes Évolutionnaires : Inspirés par la Nature
-L’évolution naturelle, également appelée évolution biologique, est un processus naturel par lequel les organismes vivants
-s’adaptent progressivement à leur environnement au fil des générations. Grâce à des mécanismes tels que la sélection
-naturelle, les mutations génétiques, et le croisement, les espèces évoluent pour mieux survivre et se reproduire
-dans des environnements en perpétuel changement. Ces mécanismes permettent de sélectionner les traits les plus avantageux,
-conduisant à des organismes de plus en plus adaptés au fil du temps.
+Les algorithmes évolutionnaires (AE) constituent une méthode d’optimisation inspirée des processus biologiques
+d’évolution tels que la sélection naturelle, le croisement et la mutation. Ils sont utilisés pour résoudre des
+problèmes complexes dans des domaines variés, notamment l’optimisation combinatoire, l’apprentissage automatique,
+la robotique ou encore le design industriel. Leur principe repose sur la représentation des solutions potentielles
+d’un problème sous forme de chromosomes, ou génotypes, qui peuvent être codés différemment en fonction du problème.
 
-Ce processus d’adaptation est lent mais incroyablement efficace, explorant un vaste espace de possibilités pour maximiser
-les chances de survie.
+Ces représentations incluent les chaînes binaires, adaptées aux problèmes combinatoires, les vecteurs de nombres réels,
+souvent utilisés pour des problèmes continus, ou encore les permutations, essentielles pour des problèmes comme
+le voyageur de commerce.
 
-Inspirés par cette dynamique naturelle, les chercheurs en intelligence artificielle et en optimisation ont développé
-des algorithmes d’optimisation appelés ``évolutionnaires'' ou évolutionnistes. Ces algorithmes, de nature
-stochastique (aléatoire), s’appuient sur les principes de l’évolution biologique pour résoudre des
-problèmes complexes dans lesquels il faut trouver les meilleures solutions parmi un grand nombre de possibilités.
+Le processus commence par la génération d’une population initiale d’individus, qui peut être aléatoire ou guidée par
+des heuristiques spécifiques. Chaque individu de cette population représente une solution candidate et est évalué à
+l’aide d’une fonction de fitness, conçue pour mesurer la qualité de la solution en fonction des objectifs du problème.
 
+Cette fonction est souvent spécifique au domaine et peut viser à maximiser une performance, minimiser un coût,
+ou encore équilibrer plusieurs critères dans des contextes multi-objectifs. Sur la base de cette évaluation,
+les individus les plus adaptés, c’est-à-dire ceux présentant une meilleure fitness, sont sélectionnés pour participer
+à la reproduction, un processus clé dans lequel les solutions prometteuses sont combinées pour explorer de nouvelles
+régions de l’espace des solutions.
 
-Les plus courants sont les algorithmes génétiques, les stratégies d’évolution, et la programmation génétique.
+La sélection peut être réalisée selon plusieurs méthodes. La roulette probabiliste privilégie les individus les plus
+performants en proportion de leur fitness, tandis que la sélection par tournoi compare un sous-ensemble aléatoire
+d’individus pour ne retenir que les meilleurs. La sélection par rang classe les individus par ordre de fitness pour
+attribuer des probabilités équitables, et les mécanismes élitistes garantissent la préservation des solutions les
+plus prometteuses en les transmettant directement à la génération suivante. Une fois les parents choisis,
+le croisement entre leurs chromosomes produit de nouveaux individus appelés enfants. Ce processus repose sur divers
+mécanismes, tels que le croisement à un point ou à deux points, où des portions des chromosomes des parents sont
+échangées, ou encore le croisement uniforme, où chaque gène est mélangé de manière indépendante.
 
-Pour traduire les étapes de l’évolution naturelle en un processus capable de résoudre un problème donné et
-d’en identifier des solutions, nous commençons par modéliser ou formuler précisément ce problème.
-Cela consiste en la définition des paramètres, des contraintes et des objectifs à optimiser.
-Cette phase est décisive, car elle permet de transformer un problème complexe en une structure
-organisée et logique, facilitant ainsi l’analyse et mettant en lumière les paramètres critiques
-ainsi que les limitations du problème à résoudre.
+Cette recombinaison favorise la création de nouvelles combinaisons génétiques qui peuvent conduire à de
+meilleures solutions.
 
-=== Principes de base des Algorithmes Évolutionnaires
-Ils fonctionnent en représentant les solutions potentielles d’un problème sous une forme appelée *chromosome* ou génotype,
-qui peut être codée en binaire, en vecteurs réels ou en permutations.
+En parallèle, la mutation joue un rôle crucial pour maintenir la diversité dans la population.
+Elle introduit des changements aléatoires dans les chromosomes en inversant des bits pour les représentations binaires,
+ou en ajoutant de petites perturbations pour les vecteurs réels. Cela permet d’éviter la stagnation dans des solutions
+sous-optimales et de préserver la capacité de l’algorithme à explorer des régions peu visitées de l’espace de recherche.
+Une fois la phase de croisement et de mutation terminée, une nouvelle population est formée,
+soit en remplaçant entièrement l’ancienne population, soit en combinant les anciens et les nouveaux individus,
+souvent en privilégiant les plus performants.
 
-Une *population initiale*, composée de ces chromosomes, est générée de manière aléatoire ou guidée par des heuristiques.
-Chaque individu de la population est évalué à l’aide d’une *fonction de fitness*,
-qui mesure la qualité de la *solution* qu’il représente.
+Ce cycle d’évaluation, sélection, reproduction et mutation se poursuit de manière itérative, génération après génération,
+jusqu’à ce qu’une condition d’arrêt soit atteinte. Ces conditions peuvent inclure l’atteinte d’un nombre maximal
+de générations, la convergence de la population vers une solution stable, ou l’obtention d’une solution jugée
+satisfaisante en fonction des critères d’évaluation. À la fin de ce processus, l’algorithme retourne la meilleure
+solution trouvée, généralement celle associée à la fitness la plus élevée dans la population finale.
 
-Les individus les plus aptes, selon cette évaluation, sont sélectionnés pour transmettre leurs caractéristiques
-à la génération suivante, en utilisant des méthodes telles que la sélection par roulette, par tournoi, ou par rang,
-et parfois en incluant un mécanisme d’élitisme.
-
-Le croisement combine les chromosomes des parents pour produire de nouveaux individus,
-tandis que la mutation introduit de petites modifications aléatoires pour préserver la diversité et éviter
-la stagnation dans des optima locaux. Après chaque itération, une nouvelle population est formée,
-en remplaçant totalement ou partiellement l’ancienne.
-
-Ce processus itératif se poursuit jusqu’à ce qu’une condition d’arrêt soit remplie, comme le dépassement
-d’un nombre maximal de générations, l’atteinte d’une solution acceptable, ou l’absence de progrès
-significatif dans la fitness.
-
-À la fin, l’algorithme retourne *la meilleure solution trouvée*, qui correspond au chromosome ayant la meilleure
-fitness de la dernière population.
-
-Cette approche stochastique et approximative permet aux AE de résoudre des problèmes
-complexes dans des espaces de recherche vastes et non convexes, en exploitant efficacement un équilibre entre
-exploration et exploitation.
+Les algorithmes évolutionnaires se distinguent par leur approche stochastique et approximative, qui ne
+garantit pas toujours la solution optimale, mais leur confère une robustesse et une adaptabilité remarquables.
+Leur capacité à équilibrer l’exploration de nouvelles solutions avec l’exploitation des meilleures solutions
+actuelles en fait des outils puissants pour résoudre des problèmes dans des espaces de recherche vastes,
+discontinus ou non convexes. Cette flexibilité et cette efficacité leur permettent de s’imposer dans de
+nombreux domaines où d’autres méthodes traditionnelles d’optimisation peuvent échouer.
 
 == Types des EAs
 
