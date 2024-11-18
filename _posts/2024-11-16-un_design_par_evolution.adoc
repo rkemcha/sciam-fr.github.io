@@ -10,6 +10,68 @@
 :page-categories: Intelligence Artificielle, Algorithmes, Programmation génétique
 
 == Prelude
+Nous avons une sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
+Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive en générant toutes
+les permutations possibles.
+Voici un exemple simple en Java pour générer toutes les permutations d'une chaîne de caractères donnée.
+[source,java]
+----
+import java.util.ArrayList;
+import java.util.List;
+
+public class Permutations {
+
+    // Méthode pour générer toutes les permutations d'une chaîne de caractères
+    public static List<String> generatePermutations(String str) {
+        List<String> permutations = new ArrayList<>();
+        permute(str, 0, str.length() - 1, permutations);
+        return permutations;
+    }
+
+    // Méthode récursive pour permuter les caractères
+    private static void permute(String str, int left, int right, List<String> permutations) {
+        if (left == right) {
+            permutations.add(str);
+        } else {
+            for (int i = left; i <= right; i++) {
+                str = swap(str, left, i);
+                permute(str, left + 1, right, permutations);
+                str = swap(str, left, i); // backtrack
+            }
+        }
+    }
+
+    // Méthode pour échanger deux caractères dans une chaîne
+    private static String swap(String str, int i, int j) {
+        char[] charArray = str.toCharArray();
+        char temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
+
+    // Méthode principale pour tester la génération de permutations
+    public static void main(String[] args) {
+        String str = "ABC";
+        List<String> permutations = generatePermutations(str);
+        System.out.println("Toutes les permutations de " + str + " sont :");
+        for (String perm : permutations) {
+            System.out.println(perm);
+        }
+    }
+}
+
+----
+Il y a une façon plus efficace de trouver toutes les permutations d'une séquence de lettres,
+mais ce n'est pas notre sujet pour le moment.
+Ce qui est sûr, c'est que l'exécution suit un chemin unique,
+entièrement déterminé par les instructions et les données d'entrée.
+L'algorithme produit toujours les mêmes sorties en suivant exactement les mêmes étapes.
+Mais est-ce toujours le cas pour d'autres types de problèmes ?
+
+*La repose est strictement non!.*
+
+== Introduction
 Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux
 problèmes dans divers domaines, qu'il s'agisse de tri de données, de recherche de chemins optimaux,
 ou encore de résolution d’équations complexes.
@@ -54,7 +116,7 @@ qui auraient autrement échappé à toute détection.
 
 Par conséquent, nous utilisons les algorithmes évolutionnaires pour concevoir de nouveaux produits ou systèmes
 de manière similaire à la méthodes MVP (Minimum Viable Product). footnote:mvp[Il peut y avoir une grande similitude avec
-le terme MVP utilisé dans l'industrie logicielle ou par les méthodologies Agile, SaFe ou Lean; ici,
+le terme MVP utilisé dans l'industrie logicielle ou par les méthodologies *Agile*, *SaFe* ou *Lean*; ici,
 le produit peut être la solution que nous cherchons à notre problème.]
 
 
@@ -74,7 +136,6 @@ on utilise un critère de fitness pour évaluer et comparer les solutions, perme
 les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
 
 == Les Algorithmes Évolutionnaires : Inspirés par la Nature
-
 L’évolution naturelle, également appelée évolution biologique, est un processus naturel par lequel les organismes vivants
 s’adaptent progressivement à leur environnement au fil des générations. Grâce à des mécanismes tels que la sélection
 naturelle, les mutations génétiques, et le croisement, les espèces évoluent pour mieux survivre et se reproduire
@@ -99,22 +160,33 @@ Cette phase est décisive, car elle permet de transformer un problème complexe 
 organisée et logique, facilitant ainsi l’analyse et mettant en lumière les paramètres critiques
 ainsi que les limitations du problème à résoudre.
 
-
 === Principes de base des Algorithmes Évolutionnaires
+Ils fonctionnent en représentant les solutions potentielles d’un problème sous une forme appelée *chromosome* ou génotype,
+qui peut être codée en binaire, en vecteurs réels ou en permutations.
 
-* *Initialisation*: Un ensemble de solutions (ou configurations) initiales, appelées population, est généré de manière
-aléatoire ou en fonction de connaissances préexistantes.
-* *Évaluation de l'Aptitude (Fitness)*: Chaque solution de la population est évaluée à l'aide d’une fonction de fitness
-qui mesure combien elle répond aux objectifs de conception. Cela peut inclure des critères tels que la robustesse,
-l’efficacité, le coût, ou la performance.
-* *Sélection*: Les solutions les plus performantes sont sélectionnées pour former une nouvelle génération,
-les solutions avec un score de fitness plus élevé ayant plus de chances d'être choisies.
-* *Mutation et Croisement (Recombinaison)*: Les solutions sélectionnées subissent des modifications.
-La mutation introduit des changements aléatoires dans une solution pour créer de nouvelles variantes,
-tandis que le croisement combine des éléments de deux solutions pour en générer de nouvelles.
-Ces processus permettent d’explorer de nouveaux points dans l’espace de recherche.
-* *Itération* : Ce cycle de sélection, mutation, et croisement se répète sur plusieurs générations,
-et la population évolue vers des solutions de plus en plus optimales.
+Une *population initiale*, composée de ces chromosomes, est générée de manière aléatoire ou guidée par des heuristiques.
+Chaque individu de la population est évalué à l’aide d’une *fonction de fitness*,
+qui mesure la qualité de la *solution* qu’il représente.
+
+Les individus les plus aptes, selon cette évaluation, sont sélectionnés pour transmettre leurs caractéristiques
+à la génération suivante, en utilisant des méthodes telles que la sélection par roulette, par tournoi, ou par rang,
+et parfois en incluant un mécanisme d’élitisme.
+
+Le croisement combine les chromosomes des parents pour produire de nouveaux individus,
+tandis que la mutation introduit de petites modifications aléatoires pour préserver la diversité et éviter
+la stagnation dans des optima locaux. Après chaque itération, une nouvelle population est formée,
+en remplaçant totalement ou partiellement l’ancienne.
+
+Ce processus itératif se poursuit jusqu’à ce qu’une condition d’arrêt soit remplie, comme le dépassement
+d’un nombre maximal de générations, l’atteinte d’une solution acceptable, ou l’absence de progrès
+significatif dans la fitness.
+
+À la fin, l’algorithme retourne *la meilleure solution trouvée*, qui correspond au chromosome ayant la meilleure
+fitness de la dernière population.
+
+Cette approche stochastique et approximative permet aux AE de résoudre des problèmes
+complexes dans des espaces de recherche vastes et non convexes, en exploitant efficacement un équilibre entre
+exploration et exploitation.
 
 == Types des EAs
 
