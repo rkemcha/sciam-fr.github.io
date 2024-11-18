@@ -11,9 +11,8 @@
 
 == Prelude
 Nous avons une sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
-Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive en générant toutes
-les permutations possibles.
-Voici un exemple simple en Java pour générer toutes les permutations d'une chaîne de caractères donnée.
+Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive.
+Voici un exemple simple en Java pour qui nous permet de trouver la solution.
 [source,java]
 ----
 import java.util.ArrayList;
@@ -62,7 +61,7 @@ public class Permutations {
 }
 
 ----
-Il y a une façon plus efficace de trouver toutes les permutations d'une séquence de lettres,
+Il y a une autre façon plus efficace de trouver toutes les permutations d'une séquence de lettres,
 mais ce n'est pas notre sujet pour le moment.
 
 *Ce qui est sûr, c'est que l'exécution suit un chemin unique, entièrement déterminé par
@@ -72,22 +71,26 @@ les instructions et les données d'entrée.*
 Mais imaginez maintenant que nous devons trouver la meilleure solution pour le problème Suivant :
 Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois, avant de revenir à sa ville de départ.
 Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale
-parcourue (ou, dans certaines variantes, le coût total).
+parcourue et/ou le coût total.
 
 Si on veux une representation mathematics de ce problème, on peut le définir comme suit :
-Soit 𝑉 = {1, 2, ..., 𝑛} l'ensemble des villes à visiter, et 𝑑(𝑖, 𝑗) la distance entre les villes 𝑖 et 𝑗.
-Une matrice de distance D est définie telle que 𝐷[𝑖, 𝑗] = 𝑑(𝑖, 𝑗) pour tout 𝑖, 𝑗 ∈ 𝑉.
+Soit \(𝑉 = \{c_1, c_2, c_3,..., c_𝑛\} \) l'ensemble des villes à visiter, et \( d(i, j) \) la distance entre les villes 𝑖 et 𝑗.
+Une matrice de distance \((D)\) est définie telle que \( D[i, j] \) = \( d(i, j) \) pour tout 𝑖, 𝑗 ∈ 𝑉.
 
-En sortie nous aurons besoin de trouver une permutation 𝜋 = (𝜋1, 𝜋2, ..., 𝜋𝑛) de l'ensemble 𝑉 telle que
+En sortie nous aurons besoin de trouver une permutation 𝜋 = (𝜋1, 𝜋2, ..., 𝜋𝑛) de l'ensemble \(𝑉\) telle que
 le cout total de la tournée soit minimal, c'est-à-dire que la somme des distances entre les villes successives
-Cout totale:  stem:[\text{CT}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\] + D[\pi_n, \pi_1\]]
+ : stem:[\text{t}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\]]
 
 Et si on calcule la complexité de ce problème, on trouve qu'il est de l'ordre de O(n!) ce qui est très couteux car :
 
-Par exemple, pour 𝑛 = 10 n=10, il y a 9!= 362,880 9!=362,880 chemins à explorer.
-Pour 𝑛 = 20 n=20, 19!≈ 1.22 × 1 0 17 19!≈1.22×10 17 , ce qui devient ingérable pour un ordinateur.
+Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y'a stem:[\begin{equation}9!= 362,880  \end{equation}]
+ chemins à explorer.
+
+Pour stem:[\begin{equation} 𝑛 = 20\end{equation}] il y'a  stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}],
+ ce qui devient ingérable pour un ordinateur.
 
 On appel ce problème le problème du voyageur de commerce *(TSP, Travelling Salesman Problem)*
+
 
 == Introduction
 Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux
@@ -157,8 +160,10 @@ les meilleures configurations à chaque génération, même si elles ne sont pas
 Les algorithmes évolutionnaires (AE) constituent une méthode d’optimisation inspirée des processus biologiques
 d’évolution tels que la sélection naturelle, le croisement et la mutation. Ils sont utilisés pour résoudre des
 problèmes complexes dans des domaines variés, notamment l’optimisation combinatoire, l’apprentissage automatique,
-la robotique ou encore le design industriel. Leur principe repose sur la représentation des solutions potentielles
-d’un problème sous forme de chromosomes, ou génotypes, qui peuvent être codés différemment en fonction du problème.
+la robotique ou encore le design industriel.
+
+Leur principe repose sur la représentation des solutions potentielles d’un problème sous forme de chromosomes,
+ou génotypes, qui peuvent être codés différemment en fonction du problème.
 
 Ces représentations incluent les chaînes binaires, adaptées aux problèmes combinatoires, les vecteurs de nombres réels,
 souvent utilisés pour des problèmes continus, ou encore les permutations, essentielles pour des problèmes comme
