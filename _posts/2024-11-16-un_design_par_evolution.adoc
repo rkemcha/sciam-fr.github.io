@@ -302,9 +302,14 @@ individus (solutions candidates) pour générer de nouvelles solutions. L'algori
 opérateurs principaux : mutation, croisement et sélection.
 
 * *Mutation*: La mutation dans DE est réalisée en combinant les différences entre des solutions (ou individus)
-    pour créer de nouvelles solutions candidates. Plus précisément, une différence entre deux solutions
-    de la population est ajoutée à une troisième solution pour produire un individu mutant.
+    pour créer de nouvelles solutions candidates.
+    Plus précisément, une différence entre deux solutions de la population est ajoutée à une troisième solution
+    pour produire un individu mutant.
     stem:[v_i = x_{r1} + F \cdot (x_{r2} - x_{r3})]
+    où :
+    - stem:[v_i] est le vecteur mutant,
+    - stem:[x_{r1}], stem:[x_{r2}], et stem:[x_{r3}] sont des solutions sélectionnées aléatoirement dans la population,
+    - stem:[F] est un facteur de mutation qui contrôle l'amplitude de la mutation.
 
 * *Croisement (Recombinaison)* : L'opérateur de croisement combine la solution d'origine (parents)
 avec la solution mutant pour produire un nouvel individu.
