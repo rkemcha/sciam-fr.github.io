@@ -10,6 +10,7 @@
 :page-categories: Intelligence Artificielle, Algorithmes, Programmation génétique
 
 == Prelude
+
 Nous avons une sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
 Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive.
 Voici un exemple simple en Java pour qui nous permet de trouver la solution.
@@ -62,21 +63,18 @@ public class Permutations {
 }
 
 ----
-Il y a une autre façon plus efficace de trouver toutes les permutations d'une séquence de lettres,
-mais ce n'est pas notre sujet en ce moment.
+
+Il y a une autre façon plus efficace de trouver toutes les permutations d'une séquence de lettres, mais ce n'est pas notre sujet en ce moment.
 
 Mais imaginez maintenant que nous devons trouver la meilleure solution pour le problème Suivant :
 Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois, avant de revenir à sa ville de départ.
-Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale
-parcourue et/ou le coût total.
-
+Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale parcourue et/ou le coût total.
 
 Si on veux une representation mathématiques de ce problème, on peut le définir comme suit :
 Soit \(𝑉 = \{c_1, c_2, c_3,..., c_𝑛\} \) l'ensemble des villes à visiter, et \( d(i, j) \) la distance entre les villes 𝑖 et 𝑗.
 Une matrice de distance \((D)\) est définie telle que \( D[i, j] \) = \( d(i, j) \) pour tout 𝑖, 𝑗 ∈ 𝑉.
 
-En sortie nous aurons besoin de trouver une permutation \(𝜋 = (𝜋_1, 𝜋_2, ..., 𝜋_𝑛) \) de l'ensemble \(𝑉\) telle que
-le cout total de la tournée soit minimal, c'est-à-dire que la somme des distances entre les villes successives :
+En sortie nous aurons besoin de trouver une permutation \(𝜋 = (𝜋_1, 𝜋_2, ..., 𝜋_𝑛) \) de l'ensemble \(𝑉\) telle que le cout total de la tournée soit minimal, c'est-à-dire que la somme des distances entre les villes successives :
 
 stem:[\text{t}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\]]
 
@@ -86,281 +84,207 @@ Elle est utilisée dans de nombreux domaines comme les probabilités, les statis
 \(n! = n × (n - 1) × (n - 2) × ... × 2 × 1\)]
 ce qui est très couteux car :
 
-Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y'a stem:[\begin{equation}9!= 362,880  \end{equation}]
- chemins à explorer.
+Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y'a stem:[\begin{equation}9!= 362,880 \end{equation}]
+chemins à explorer.
 
 Pour stem:[\begin{equation} 𝑛 = 20\end{equation}] il y'a  stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}]
 footnote:nb[Le nombre stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}] est une notation scientifique utilisée
 pour représenter des nombres très grands ou très petits de manière concise.
 Voici comment l’interpréter en valeur exacte 1.22×100,000,000,000,000,000 = 122,000,000,000,000,000 ou 122 quadrillions.]
-ce qui devient ingérable pour un ordinateur.
+
+et pour 71 villes, le nombre de chemins candidats est supérieur à stem:[\begin{equation} 70!≈ 5 * 10^{99} \end{equation}]
+qui est plus grand que le nombre d'atomes dans l'univers connu ce qui devient ingérable pour un ordinateur.
+footnote:atoms[Le nombre d'atomes dans l'univers observable est estimé à environ 10^80, ce qui signifie que le nombre de chemins possibles pour 71 villes dépasse largement ce nombre,
+et En 2004, Carl Sagan a popularisé dans Cosmos l’idée du nombre d’atomes dans l’univers observable en discutant de l’immensité de l’espace]
 
 On appel ce problème le problème du voyageur de commerce *(TSP, Travelling Salesman Problem)*
 
 image::{{'/images/tsp/traveling.png' | relative_url}}[image,align="center"]
 
-
 == Introduction
-Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux
-problèmes dans divers domaines, qu'il s'agisse de tri de données, de recherche de chemins optimaux,
-ou encore de résolution d’équations complexes.
+
+Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux problèmes dans divers domaines, qu'il s'agisse de tri de données, de recherche de chemins optimaux, ou encore de résolution d’équations complexes.
 
 Cependant, face à des problèmes dits `NP-difficiles' footnote:np-difficult[En informatique théorique,
 le terme "NP-difficiles" (ou NP-hard en anglais) désigne une classe
 de problèmes qui sont au moins aussi difficiles à résoudre que les problèmes de la classe
-NP (Non-deterministic Polynomial time); Example :  Le célèbre problème du voyageur de commerce
+NP (Non-deterministic Polynomial time); Example : Le célèbre problème du voyageur de commerce
 (TSP, Travelling Salesman Problem) en version d’optimisation qui consiste à trouver le chemin optimal
-parmi plusieurs villes est un défi immense quand le nombre de villes augmente] ou à de vastes espaces de conception,
-ils révèlent rapidement leurs limites.
+parmi plusieurs villes est un défi immense quand le nombre de villes augmente] ou à de vastes espaces de conception, ils révèlent rapidement leurs limites.
 
-Ces algorithmes, souvent déterministes, sont conçus pour parcourir
-de manière exhaustive toutes les solutions possibles pour garantir de trouver l’optimum, ce qui rend leur
-utilisation peu pratique, voire impossible, pour des problèmes de grande dimension ou en constante évolution.
+Ces algorithmes, souvent déterministes, sont conçus pour parcourir de manière exhaustive toutes les solutions possibles pour garantir de trouver l’optimum, ce qui rend leur utilisation peu pratique, voire impossible, pour des problèmes de grande dimension ou en constante évolution.
 
 Les algorithmes approximatifs ou méta-heuristiques footnote:meta[Les méta-heuristiques sont des méthodes d'optimisation
 avancées conçues pour résoudre des problèmes complexes, souvent difficiles à traiter par des algorithmes exacts en
 raison de la taille ou de la complexité de l'espace de recherche. Ces approches utilisent des stratégies globales
 et adaptatives pour explorer efficacement l'espace des solutions et trouver des solutions optimales ou
-quasi-optimales dans un temps raisonnable], quant à eux, apportent une approche différente
-pour obtenir des solutions proches de l'optimum dites quasi-optimales dans des délais raisonnables,
-ce qui est souvent suffisant pour les applications pratiques.
+quasi-optimales dans un temps raisonnable], quant à eux, apportent une approche différente pour obtenir des solutions proches de l'optimum dites quasi-optimales dans des délais raisonnables, ce qui est souvent suffisant pour les applications pratiques.
 
-Une des classes des méta-heuristiques est celle des algorithmes évolutionnaires, souvent assimilés aux
-'algorithmes génétiques' dont l'approche est inspirée des mécanismes de l'évolution naturelle.
+Une des classes des méta-heuristiques est celle des algorithmes évolutionnaires, souvent assimilés aux 'algorithmes génétiques' dont l'approche est inspirée des mécanismes de l'évolution naturelle.
 
-En simulant des processus tels que la sélection, le croisement et la mutation,
-les algorithmes évolutionnaires génèrent progressivement des solutions optimales ou quasi-optimales
-contrairement aux algorithmes exactes qui peuvent être bloqués par des solutions locales ou des configurations complexes.
+En simulant des processus tels que la sélection, le croisement et la mutation, les algorithmes évolutionnaires génèrent progressivement des solutions optimales ou quasi-optimales contrairement aux algorithmes exactes qui peuvent être bloqués par des solutions locales ou des configurations complexes.
 
-Au-delà de la résolution de problèmes spécifiques, les algorithmes évolutionnaires se distinguent par leur efficacité
-dans l'exploration d'espaces de recherche vastes et complexes, surtout lorsque les dimensions du problème augmentent
-et entraînent une prolifération de configurations possibles.
+Au-delà de la résolution de problèmes spécifiques, les algorithmes évolutionnaires se distinguent par leur efficacité dans l'exploration d'espaces de recherche vastes et complexes, surtout lorsque les dimensions du problème augmentent et entraînent une prolifération de configurations possibles.
 
-Ces algorithmes apportent une dynamique adaptative et flexible,
-élargissant considérablement le champ de recherche en pénétrant des zones inexplorées et souvent inaccessibles aux méthodes
-classiques ou à l'intuition humaine. Cette capacité d'exploration, amplifiée par la composante aléatoire,
-ouvre la voie à la découverte de solutions innovantes, inédites et potentiellement optimisées,
-qui auraient autrement échappé à toute détection.
+Ces algorithmes apportent une dynamique adaptative et flexible, élargissant considérablement le champ de recherche en pénétrant des zones inexplorées et souvent inaccessibles aux méthodes classiques ou à l'intuition humaine.
+Cette capacité d'exploration, amplifiée par la composante aléatoire, ouvre la voie à la découverte de solutions innovantes, inédites et potentiellement optimisées, qui auraient autrement échappé à toute détection.
 
-Par conséquent, nous utilisons les algorithmes évolutionnaires pour concevoir de nouveaux produits ou systèmes
-de manière similaire à la méthodes MVP (Minimum Viable Product). footnote:mvp[Il peut y avoir une grande similitude avec
+Par conséquent, nous utilisons les algorithmes évolutionnaires pour concevoir de nouveaux produits ou systèmes de manière similaire à la méthodes MVP (Minimum Viable Product). footnote:mvp[Il peut y avoir une grande similitude avec
 le terme MVP utilisé dans l'industrie logicielle ou par les méthodologies *Agile*, *SaFe* ou *Lean*; ici,
 le produit peut être la solution que nous cherchons à notre problème.]
 
-
 Imaginez les algorithmes évolutionnaires comme un processus de développement en plusieurs générations :
-au lieu de créer un produit final parfait dès le début, ils explorent diverses versions ``prototypes'' (solutions) à
-travers des itérations rapides.
+au lieu de créer un produit final parfait dès le début, ils explorent diverses versions ``prototypes'' (solutions) à travers des itérations rapides.
 
-Chaque version est testée, puis les meilleures configurations sont sélectionnées,
-ajustées et combinées pour former une nouvelle génération améliorée. De la même façon que le MVP évolue par étapes
-en fonction du retour des utilisateurs, les algorithmes évolutionnaires évaluent, adaptent et optimisent chaque itération
-pour s’approcher de la solution optimale.
+Chaque version est testée, puis les meilleures configurations sont sélectionnées, ajustées et combinées pour former une nouvelle génération améliorée.
+De la même façon que le MVP évolue par étapes en fonction du retour des utilisateurs, les algorithmes évolutionnaires évaluent, adaptent et optimisent chaque itération pour s’approcher de la solution optimale.
 
-Évidemment, au contraire du MVP, les algorithmes évolutionnaires ne sont pas tenus de produire
-une solution immédiatement ``viable'' ou utilisable à chaque itération. Ils évoluent de manière itérative afin
-d'explorer l'espace de recherche pour converger progressivement vers des solutions optimales. Dans ce contexte,
-on utilise un critère de fitness pour évaluer et comparer les solutions, permettant de sélectionner et d'améliorer
-les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
+Évidemment, au contraire du MVP, les algorithmes évolutionnaires ne sont pas tenus de produire une solution immédiatement ``viable'' ou utilisable à chaque itération.
+Ils évoluent de manière itérative afin d'explorer l'espace de recherche pour converger progressivement vers des solutions optimales.
+Dans ce contexte, on utilise un critère de fitness pour évaluer et comparer les solutions, permettant de sélectionner et d'améliorer les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
 
 == Les Algorithmes Évolutionnaires : Inspirés par la Nature
-Les algorithmes évolutionnaires (AE) sont utilisés pour résoudre des
-problèmes complexes dans des domaines variés, notamment l’optimisation combinatoire, l’apprentissage automatique,
-la robotique ou encore le design industriel.
 
-Leur principe repose sur la représentation des solutions potentielles d’un problème sous forme de chromosomes,
-ou génotypes, qui peuvent être codés différemment en fonction du problème.
+Les algorithmes évolutionnaires (AE) sont utilisés pour résoudre des problèmes complexes dans des domaines variés, notamment l’optimisation combinatoire, l’apprentissage automatique, la robotique ou encore le design industriel.
 
-Ces représentations incluent les chaînes binaires, adaptées aux problèmes combinatoires, les vecteurs de nombres réels,
-souvent utilisés pour des problèmes continus, ou encore les permutations, essentielles pour des problèmes comme
-le voyageur de commerce.
+Leur principe repose sur la représentation des solutions potentielles d’un problème sous forme de chromosomes, ou génotypes, qui peuvent être codés différemment en fonction du problème.
 
-Le processus commence par la génération d’une population initiale d’individus, qui peut être aléatoire ou guidée par
-des heuristiques spécifiques. Chaque individu de cette population représente une solution candidate et est évalué à
-l’aide d’une fonction de fitness, conçue pour mesurer la qualité de la solution en fonction des objectifs du problème.
+Ces représentations incluent les chaînes binaires, adaptées aux problèmes combinatoires, les vecteurs de nombres réels, souvent utilisés pour des problèmes continus, ou encore les permutations, essentielles pour des problèmes comme le voyageur de commerce.
 
-Cette fonction est souvent spécifique au domaine et peut viser à maximiser une performance, minimiser un coût,
-ou encore équilibrer plusieurs critères dans des contextes multi-objectifs. Sur la base de cette évaluation,
-les individus les plus adaptés, c’est-à-dire ceux présentant une meilleure fitness, sont sélectionnés pour participer
-à la reproduction, un processus clé dans lequel les solutions prometteuses sont combinées pour explorer de nouvelles
-régions de l’espace des solutions.
+Le processus commence par la génération d’une population initiale d’individus, qui peut être aléatoire ou guidée par des heuristiques spécifiques.
+Chaque individu de cette population représente une solution candidate et est évalué à l’aide d’une fonction de fitness, conçue pour mesurer la qualité de la solution en fonction des objectifs du problème.
 
-La sélection peut être réalisée selon plusieurs méthodes. La roulette probabiliste privilégie les individus les plus
-performants en proportion de leur fitness, tandis que la sélection par tournoi compare un sous-ensemble aléatoire
-d’individus pour ne retenir que les meilleurs. La sélection par rang classe les individus par ordre de fitness pour
-attribuer des probabilités équitables, et les mécanismes élitistes garantissent la préservation des solutions les
-plus prometteuses en les transmettant directement à la génération suivante. Une fois les parents choisis,
-le croisement entre leurs chromosomes produit de nouveaux individus appelés enfants. Ce processus repose sur divers
-mécanismes, tels que le croisement à un point ou à deux points, où des portions des chromosomes des parents sont
-échangées, ou encore le croisement uniforme, où chaque gène est mélangé de manière indépendante.
+Cette fonction est souvent spécifique au domaine et peut viser à maximiser une performance, minimiser un coût, ou encore équilibrer plusieurs critères dans des contextes multi-objectifs.
+Sur la base de cette évaluation, les individus les plus adaptés, c’est-à-dire ceux présentant une meilleur fitness, sont sélectionnés pour participer à la reproduction, un processus clé dans lequel les solutions prometteuses sont combinées pour explorer de nouvelles régions de l’espace des solutions.
 
-Cette recombinaison favorise la création de nouvelles combinaisons génétiques qui peuvent conduire à de
-meilleures solutions.
+La sélection peut être réalisée selon plusieurs méthodes.
+La roulette probabiliste privilégie les individus les plus performants en proportion de leur fitness, tandis que la sélection par tournoi compare un sous-ensemble aléatoire d’individus pour ne retenir que les meilleurs.
+La sélection par rang classe les individus par ordre de fitness pour attribuer des probabilités équitables, et les mécanismes élitistes garantissent la préservation des solutions les plus prometteuses en les transmettant directement à la génération suivante.
+Une fois les parents choisis, le croisement entre leurs chromosomes produit de nouveaux individus appelés enfants.
+Ce processus repose sur divers mécanismes, tels que le croisement à un point ou à deux points, où des portions des chromosomes des parents sont échangées, ou encore le croisement uniforme, où chaque gène est mélangé de manière indépendante.
+
+Cette recombinaison favorise la création de nouvelles combinaisons génétiques qui peuvent conduire à de meilleures solutions.
 
 En parallèle, la mutation joue un rôle crucial pour maintenir la diversité dans la population.
-Elle introduit des changements aléatoires dans les chromosomes en inversant des bits pour les représentations binaires,
-ou en ajoutant de petites perturbations pour les vecteurs réels. Cela permet d’éviter la stagnation dans des solutions
-sous-optimales et de préserver la capacité de l’algorithme à explorer des régions peu visitées de l’espace de recherche.
-Une fois la phase de croisement et de mutation terminée, une nouvelle population est formée,
-soit en remplaçant entièrement l’ancienne population, soit en combinant les anciens et les nouveaux individus,
-souvent en privilégiant les plus performants.
+Elle introduit des changements aléatoires dans les chromosomes en inversant des bits pour les représentations binaires, ou en ajoutant de petites perturbations pour les vecteurs réels.
+Cela permet d’éviter la stagnation dans des solutions sous-optimales et de préserver la capacité de l’algorithme à explorer des régions peu visitées de l’espace de recherche.
+Une fois la phase de croisement et de mutation terminée, une nouvelle population est formée, soit en remplaçant entièrement l’ancienne population, soit en combinant les anciens et les nouveaux individus, souvent en privilégiant les plus performants.
 
-Ce cycle d’évaluation, sélection, reproduction et mutation se poursuit de manière itérative, génération après génération,
-jusqu’à ce qu’une condition d’arrêt soit atteinte. Ces conditions peuvent inclure l’atteinte d’un nombre maximal
-de générations, la convergence de la population vers une solution stable, ou l’obtention d’une solution jugée
-satisfaisante en fonction des critères d’évaluation. À la fin de ce processus, l’algorithme retourne la meilleure
-solution trouvée, généralement celle associée à la fitness la plus élevée dans la population finale.
+Ce cycle d’évaluation, sélection, reproduction et mutation se poursuit de manière itérative, génération après génération, jusqu’à ce qu’une condition d’arrêt soit atteinte.
+Ces conditions peuvent inclure l’atteinte d’un nombre maximal de générations, la convergence de la population vers une solution stable, ou l’obtention d’une solution jugée satisfaisante en fonction des critères d’évaluation.
+À la fin de ce processus, l’algorithme retourne la meilleure solution trouvée, généralement celle associée à la fitness la plus élevée dans la population finale.
 
-Les algorithmes évolutionnaires se distinguent par leur approche stochastique et approximative, qui ne
-garantit pas toujours la solution optimale, mais leur confère une robustesse et une adaptabilité remarquables.
-Leur capacité à équilibrer l’exploration de nouvelles solutions avec l’exploitation des meilleures solutions
-actuelles en fait des outils puissants pour résoudre des problèmes dans des espaces de recherche vastes,
-discontinus ou non convexes. Cette flexibilité et cette efficacité leur permettent de s’imposer dans de
-nombreux domaines où d’autres méthodes traditionnelles d’optimisation peuvent échouer.
+Les algorithmes évolutionnaires se distinguent par leur approche stochastique et approximative, qui ne garantit pas toujours la solution optimale, mais leur confère une robustesse et une adaptabilité remarquables.
+Leur capacité à équilibrer l’exploration de nouvelles solutions avec l’exploitation des meilleures solutions actuelles en fait des outils puissants pour résoudre des problèmes dans des espaces de recherche vastes, discontinus ou non convexes.
+Cette flexibilité et cette efficacité leur permettent de s’imposer dans de nombreux domaines où d’autres méthodes traditionnelles d’optimisation peuvent échouer.
 
 == Types des EAs
 
 === Algorithmes génétiques (AG)
 
-Les algorithmes génétiques (AG) sont des métaheuristiques inspirées du processus de l'évolution naturelle,
-qui utilisent des mécanismes de sélection, croisement, mutation et reproduction pour résoudre des problèmes
-d'optimisation et de recherche. Ils font partie des algorithmes évolutionnaires et sont utilisés
-dans de nombreux domaines, tels que l'optimisation combinatoire, la recherche opérationnelle,
-l'intelligence artificielle, et bien d'autres.
+Les algorithmes génétiques (AG) sont des métaheuristiques inspirées du processus de l'évolution naturelle, qui utilisent des mécanismes de sélection, croisement, mutation et reproduction pour résoudre des problèmes d'optimisation et de recherche.
+Ils font partie des algorithmes évolutionnaires et sont utilisés dans de nombreux domaines, tels que l'optimisation combinatoire, la recherche opérationnelle, l'intelligence artificielle, et bien d'autres.
 
-Les algorithmes génétiques sont basés sur la sélection naturelle et la génétique. Ils visent à imiter
-le processus biologique de l’évolution, où les individus les mieux adaptés survivent et se reproduisent,
-tandis que les moins adaptés disparaissent. Voici les étapes générales d'un algorithme génétique
+Les algorithmes génétiques sont basés sur la sélection naturelle et la génétique.
+Ils visent à imiter le processus biologique de l’évolution, où les individus les mieux adaptés survivent et se reproduisent, tandis que les moins adaptés disparaissent.
+Voici les étapes générales d'un algorithme génétique
 
 * *Initialisation de la population*: Créer une population initiale d'individus (solutions potentielles).
-Chaque individu est représenté par un chromosome
-(généralement sous forme de chaîne binaire ou de vecteur de valeurs réelles).
-Cette population peut être générée aléatoirement ou basée sur des heuristiques l'objectif de cette étape est de créer
-une population de solutions diverses pour pour explorer un large espace de recherche.
+Chaque individu est représenté par un chromosome (généralement sous forme de chaîne binaire ou de vecteur de valeurs réelles).
+Cette population peut être générée aléatoirement ou basée sur des heuristiques l'objectif de cette étape est de créer une population de solutions diverses pour explorer un large espace de recherche.
 
 * *Évaluation de la fitness*: Chaque individu de la population est évalué en fonction de sa fitness (aptitude).
-La fitness est une mesure de la qualité de la solution, selon une fonction d'évaluation prédéfinie,
-qui peut varier en fonction du problème spécifique l'objectif de cette étape est de déterminer à quel point chaque
-individu est "bon" ou proche de la solution optimale.
+La fitness est une mesure de la qualité de la solution, selon une fonction d'évaluation prédéfinie, qui peut varier en fonction du problème spécifique l'objectif de cette étape est de déterminer à quel point chaque individu est "bon" ou proche de la solution optimale.
 
-* *Sélection*: Sélectionner les individus qui vont participer à la reproduction, généralement en fonction de
-leur fitness.
+* *Sélection*: Sélectionner les individus qui vont participer à la reproduction, généralement en fonction de leur fitness.
 
 * *Croisement (Crossover)*: Le croisement est l'opération qui combine deux parents pour créer un ou plusieurs enfants.
 Ce processus échange des portions des chromosomes des parents pour générer de nouvelles solutions.
 
-
 === Programmation évolutionnaire (EP)
-La programmation évolutionnaire (EP) est une approche d'optimisation stochastique inspirée de l'évolution biologique,
-qui fait partie des algorithmes évolutionnaires. Elle a été introduite dans les années 1960 par
-*Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes d'optimisation complexes, principalement
-dans le cadre de l'ingénierie et de la conception de systèmes.
-La programmation évolutionnaire se distingue des autres algorithmes évolutionnaires (comme les algorithmes génétiques)
-par son approche simplifiée et la manière dont elle gère la population et la sélection des solutions candidates.
+
+La programmation évolutionnaire (EP) est une approche d'optimisation stochastique inspirée de l'évolution biologique, qui fait partie des algorithmes évolutionnaires.
+Elle a été introduite dans les années 1960 par
+*Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes d'optimisation complexes, principalement dans le cadre de l'ingénierie et de la conception de systèmes.
+La programmation évolutionnaire se distingue des autres algorithmes évolutionnaires (comme les algorithmes génétiques) par son approche simplifiée et la manière dont elle gère la population et la sélection des solutions candidates.
 
 === Programmation génétique (GP)
-La programmation génétique (GP) est utilisée pour générer des programmes informatiques capables de résoudre
-des problèmes complexes.
-Contrairement aux algorithmes génétiques classiques qui manipulent des vecteurs de réels ou des
-chaînes binaires, GP utilise des arbres de syntaxe où les nœuds représentent des opérateurs et les
-feuilles des constantes ou des variables.
 
-Le processus commence par une population initiale d'arbres générés aléatoirement,
-suivie de l'évaluation de leur performance à résoudre le problème via une
-fonction de fitness. Ensuite, les meilleurs individus sont sélectionnés pour la reproduction,
-où le croisement et la mutation sont utilisés pour générer de nouvelles solutions.
+La programmation génétique (GP) est utilisée pour générer des programmes informatiques capables de résoudre des problèmes complexes.
+Contrairement aux algorithmes génétiques classiques qui manipulent des vecteurs de réels ou des chaînes binaires, GP utilise des arbres de syntaxe où les nœuds représentent des opérateurs et les feuilles des constantes ou des variables.
 
-GP est appliquée dans des domaines variés, tels que la création automatique de logiciels,
-l'optimisation de modèles d'apprentissage automatique, la conception de circuits électroniques,
-la génération de stratégies de jeu et la création d'algorithmes d'optimisation.
+Le processus commence par une population initiale d'arbres générés aléatoirement, suivie de l'évaluation de leur performance à résoudre le problème via une fonction de fitness.
+Ensuite, les meilleurs individus sont sélectionnés pour la reproduction, où le croisement et la mutation sont utilisés pour générer de nouvelles solutions.
 
-Par exemple, dans la création de logiciels, GP peut être utilisée pour générer automatiquement
-des programmes de traitement d'image ou pour optimiser des architectures de réseaux neuronaux.
+GP est appliquée dans des domaines variés, tels que la création automatique de logiciels, l'optimisation de modèles d'apprentissage automatique, la conception de circuits électroniques, la génération de stratégies de jeu et la création d'algorithmes d'optimisation.
 
-Elle est également utilisée pour concevoir des circuits logiques, générer des stratégies de
-jeu dans des simulations, ou encore optimiser des systèmes complexes comme la gestion des
-ressources dans l'industrie.
+Par exemple, dans la création de logiciels, GP peut être utilisée pour générer automatiquement des programmes de traitement d'image ou pour optimiser des architectures de réseaux neuronaux.
+
+Elle est également utilisée pour concevoir des circuits logiques, générer des stratégies de jeu dans des simulations, ou encore optimiser des systèmes complexes comme la gestion des ressources dans l'industrie.
 
 === Algorithmes évolutionnaires multi-objectifs (MOEA)
-Les MOEA sont une classe d'algorithmes évolutionnaires conçus
-pour résoudre des problèmes d'optimisation impliquant plusieurs objectifs simultanément.
-Contrairement aux problèmes d'optimisation classiques où un seul objectif est maximisé ou minimisé,
-les problèmes multi-objectifs comportent plusieurs critères contradictoires ou complémentaires à prendre
-en compte, l'objectif est de trouver un ensemble de solutions optimales, appelées front de Pareto,
-plutôt qu'une seule solution optimale. Le front de Pareto représente un ensemble de solutions où aucune ne
-peut être améliorée dans un objectif sans détériorer un autre objectif.
+
+Les MOEA sont une classe d'algorithmes évolutionnaires conçus pour résoudre des problèmes d'optimisation impliquant plusieurs objectifs simultanément.
+Contrairement aux problèmes d'optimisation classiques où un seul objectif est maximisé ou minimisé, les problèmes multi-objectifs comportent plusieurs critères contradictoires ou complémentaires à prendre en compte, l'objectif est de trouver un ensemble de solutions optimales, appelées front de Pareto, plutôt qu'une seule solution optimale.
+Le front de Pareto représente un ensemble de solutions où aucune ne peut être améliorée dans un objectif sans détériorer un autre objectif.
 
 === Évolution différentielle (DE)
-L'évolution différentielle (DE, pour Differential Evolution) est un algorithme évolutionnaire utilisé principalement
-pour résoudre des problèmes d'optimisation continues dans des espaces de recherche de grande dimension.
+
+L'évolution différentielle (DE, pour Differential Evolution) est un algorithme évolutionnaire utilisé principalement pour résoudre des problèmes d'optimisation continues dans des espaces de recherche de grande dimension.
 Il a été proposé pour la première fois par *Rainer Storn* et *Kenneth Price* en 1995.
-L'évolution différentielle est similaire aux autres algorithmes évolutionnaires
-(comme les algorithmes génétiques), mais elle se distingue par ses opérateurs de mutation et de croisement spécifiques
+L'évolution différentielle est similaire aux autres algorithmes évolutionnaires (comme les algorithmes génétiques), mais elle se distingue par ses opérateurs de mutation et de croisement spécifiques
 
-L'idée principale de l'évolution différentielle est d'utiliser des différences vectorielles entre des
-individus (solutions candidates) pour générer de nouvelles solutions. L'algorithme repose sur trois
-opérateurs principaux : mutation, croisement et sélection.
+L'idée principale de l'évolution différentielle est d'utiliser des différences vectorielles entre des individus (solutions candidates) pour générer de nouvelles solutions.
+L'algorithme repose sur trois opérateurs principaux : mutation, croisement et sélection.
 
-* *Mutation*: La mutation dans DE est réalisée en combinant les différences entre des solutions (ou individus)
-    pour créer de nouvelles solutions candidates.
-    Plus précisément, une différence entre deux solutions de la population est ajoutée à une troisième solution
-    pour produire un individu mutant.
-    stem:[v_i = x_{r1} + F \cdot (x_{r2} - x_{r3})]
-    où :
-    - stem:[v_i] est le vecteur mutant,
-    - stem:[x_{r1}], stem:[x_{r2}], et stem:[x_{r3}] sont des solutions sélectionnées aléatoirement dans la population,
-    - stem:[F] est un facteur de mutation qui contrôle l'amplitude de la mutation.
+* *Mutation*: La mutation dans DE est réalisée en combinant les différences entre des solutions (ou individus) pour créer de nouvelles solutions candidates.
+Plus précisément, une différence entre deux solutions de la population est ajoutée à une troisième solution pour produire un individu mutant.
+stem:[v_i = x_{r1} + F \cdot (x_{r2} - x_{r3})]
+où :
+- stem:[v_i] est le vecteur mutant,
+- stem:[x_{r1}], stem:[x_{r2}], et stem:[x_{r3}] sont des solutions sélectionnées aléatoirement dans la population,
+- stem:[F] est un facteur de mutation qui contrôle l'amplitude de la mutation.
 
-* *Croisement (Recombinaison)* : L'opérateur de croisement combine la solution d'origine (parents)
-avec la solution mutant pour produire un nouvel individu.
-Le croisement est généralement réalisé avec un taux de croisement CR, qui détermine la probabilité qu'un élément de la
-solution mutant soit remplacé par l'élément correspondant de la solution de départ.
+* *Croisement (Recombinaison)* : L'opérateur de croisement combine la solution d'origine (parents) avec la solution mutant pour produire un nouvel individu.
+Le croisement est généralement réalisé avec un taux de croisement CR, qui détermine la probabilité qu'un élément de la solution mutant soit remplacé par l'élément correspondant de la solution de départ.
 
-* *Sélection* : Une fois que l'individu mutant (ou recombiné) a été généré, il est comparé à la solution
-originale (c'est-à-dire son parent). Si la solution mutant est meilleure (selon la fonction de fitness),
-elle remplace la solution originale dans la population, sinon l'individu original est conservé.
+* *Sélection* : Une fois que l'individu mutant (ou recombiné) a été généré, il est comparé à la solution originale (c'est-à-dire son parent).
+Si la solution mutant est meilleure (selon la fonction de fitness), elle remplace la solution originale dans la population, sinon l'individu original est conservé.
 Cela permet de garantir que la population ne se détériore pas au fil des générations.
 
-*Application concrète*:  Optimisation des hyperparamètres dans les réseaux de neurones ou dans des systèmes où
-la solution est un vecteur continu, comme l'optimisation de la trajectoire d'un robot autonome
-en utilisant des données sensorielles.
+La mutation dans DE repose sur une approche novatrice qui exploite les différences entre individus pour produire des solutions prometteuses.
+Cette méthode permet un compromis efficace entre exploration (recherche dans de nouvelles zones) et exploitation (raffinement des solutions actuelles).
+Les paramètres comme le facteur 𝐹 et la stratégie de mutation choisie jouent un rôle crucial dans la performance de l'algorithme.
+
+*Application concrète*: Optimisation des hyperparamètres dans les réseaux de neurones ou dans des systèmes où la solution est un vecteur continu, comme l'optimisation de la trajectoire d'un robot autonome en utilisant des données sensorielles.
 
 === Algorithmes mémétiques
 
-Les algorithmes mémétiques (ou algorithmes de la mémoire), parfois appelés métaheuristiques hybrides,
-sont une classe d'algorithmes d'optimisation qui combinent les algorithmes évolutionnaires
-(comme les algorithmes génétiques) avec des techniques locales de recherche
-(souvent appelées descentes locales ou méthodes de voisinage). L'objectif principal des algorithmes mémétiques
-est d'améliorer l'efficacité de la recherche en combinant la capacité d'exploration globale des algorithmes
-évolutionnaires avec la capacité d'exploitation locale des méthodes de recherche locale.
+Les algorithmes mémétiques (ou algorithmes de la mémoire), parfois appelés métaheuristiques hybrides, sont une classe d'algorithmes d'optimisation qui combinent les algorithmes évolutionnaires (comme les algorithmes génétiques) avec des techniques locales de recherche (souvent appelées descentes locales ou méthodes de voisinage).
+L'objectif principal des algorithmes mémétiques est d'améliorer l'efficacité de la recherche en combinant la capacité d'exploration globale des algorithmes évolutionnaires avec la capacité d'exploitation locale des méthodes de recherche locale.
 
 === Algorithmes co-évolutionnaires
-Les algorithmes co-évolutionnaires sont une classe d'algorithmes d'optimisation qui s'inspirent du concept
-de coévolution biologique, où deux ou plusieurs populations évoluent simultanément en réponse aux changements
-que chacune subit de l'autre. Ces algorithmes sont souvent utilisés dans des contextes où les solutions
-optimales sont dépendantes des interactions entre différents agents ou éléments.
 
-L'idée derrière les algorithmes co-évolutionnaires est que les individus d'une population évoluent en
-réponse aux pressions exercées par d'autres populations ou entités avec lesquelles ils interagissent.
-Cela peut être appliqué dans divers domaines, comme l'optimisation multi-objectifs, la résolution
-de problèmes combinatoires complexes, ou même dans les jeux et la robotique.
+Les algorithmes co-évolutionnaires sont une classe d'algorithmes d'optimisation qui s'inspirent du concept de coévolution biologique, où deux ou plusieurs populations évoluent simultanément en réponse aux changements que chacune subit de l'autre.
+Ces algorithmes sont souvent utilisés dans des contextes où les solutions optimales sont dépendantes des interactions entre différents agents ou éléments.
 
-* *Populations multiples* : Contrairement aux algorithmes évolutionnaires classiques qui font évoluer une seule
-population, un algorithme co-évolutionnaire fait évoluer plusieurs populations en parallèle.
+L'idée derrière les algorithmes co-évolutionnaires est que les individus d'une population évoluent en réponse aux pressions exercées par d'autres populations ou entités avec lesquelles ils interagissent.
+Cela peut être appliqué dans divers domaines, comme l'optimisation multi-objectifs, la résolution de problèmes combinatoires complexes, ou même dans les jeux et la robotique.
+
+* *Populations multiples* : Contrairement aux algorithmes évolutionnaires classiques qui font évoluer une seule population, un algorithme co-évolutionnaire fait évoluer plusieurs populations en parallèle.
 Chaque population est composée d'individus (solutions potentielles) qui interagissent avec les individus d'autres populations.
 
-* *Interactions entre populations* : Les individus d'une population sont souvent évalués en fonction de leur
-performance non seulement vis-à-vis de critères internes (comme dans les algorithmes évolutionnaires classiques)
-mais aussi par rapport à l'interaction avec d'autres individus, qui peuvent être d'une population différente.
+* *Interactions entre populations* : Les individus d'une population sont souvent évalués en fonction de leur performance non seulement vis-à-vis de critères internes (comme dans les algorithmes évolutionnaires classiques) mais aussi par rapport à l'interaction avec d'autres individus, qui peuvent être d'une population différente.
 
-Chaque type d'algorithme évolutionnaire est adapté à des types spécifiques de problèmes. Les AG et les MOEA sont
-parmi les plus polyvalents, tandis que des approches comme la programmation génétique ou l'évolution différentielle
-répondent à des besoins plus spécialisés. En fonction des contraintes et des objectifs,
-ces algorithmes peuvent être combinés ou modifiés pour maximiser leur efficacité dans le design ou l’optimisation.
+Chaque type d'algorithme évolutionnaire est adapté à des types spécifiques de problèmes.
+Les AG et les MOEA sont parmi les plus polyvalents, tandis que des approches comme la programmation génétique ou l'évolution différentielle répondent à des besoins plus spécialisés.
+En fonction des contraintes et des objectifs, ces algorithmes peuvent être combinés ou modifiés pour maximiser leur efficacité dans le design ou l’optimisation.
 
 == References
+
 [bibliography]
-* Author Name, *Book Title*, Publisher, Year
-* Author Name, *Book Title*, Publisher, Year
-* Author Name, *Book Title*, Publisher, Year
+* Lawler, E.L., Lenstra, J.K., Rinnooy Kan, A.H.G., & Shmoys, D.B, *The Traveling Salesman Problem: A Guided Tour of Combinatorial Optimization*, Wiley, 1985
+* P.J.E. Peebles, *Principles of Physical Cosmologye*, Princeton Univ Pr, Ewing, New Jersey, U.S.A, 1993
+* Eiben, A.E., & Smith, J.E., *Introduction to Evolutionary Computing*, Springer, 2003
+* M.Garey and D.Johnson, *Computers and Intractability. A Guide to the Theory of NP-Completeness.*, Freemann, San Francisco, 1979
 * Author Name, *Book Title*, Publisher, Year
