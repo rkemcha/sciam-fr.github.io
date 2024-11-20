@@ -508,8 +508,22 @@ Tout en simulant les different configurations possibles, *NSGA-II* explore l'esp
 
 ==== Étapes principales de NSGA-II :
 
-1. **Initialisation** : Générer une population initiale de configurations aléatoires.
+1. **Initialisation** : Générer une population initiale de configurations aléatoires,
+et pour exemple :
+
+- Configuration 1 : `3` machine de `50BG` de RAM, `4` CPU de `16` cœurs, `100GB` de disque,
+`1GB/s` de réseau, et on va configurer 10 brokers par cluster avec `3` partitions par topic pour
+un ensemble de topic 100.
+- Configuration 2 : 1 Machine puissante de `100GB` de RAM, `8` CPU de `32` cœurs, `500GB` de disque,
+`10GB/s` de réseau, et on va configurer 5 brokers par cluster avec `5` partitions par topic pour
+- Configuration 3 : 5 petites machines de `4` CPU chacune, `16GB` de RAM,
+`1GB/s` de réseau, et on va configurer 20 brokers par cluster avec `2` partitions par topic pour avec une
+solution stockage sur le cloud.
+
 2. **Évaluation** : Mesurer les performances de chaque configuration selon les objectifs (latence, débit, etc.)
+Nous gardons les configurations ayant les meilleurs tout en essayant de diversifier les solutions,
+et on va évaluer les performances de chaque configuration en fonction des objectifs définis.
+
 3. **Tri par domination** : Classer les solutions en fonction de leur non-domination.
 Les solutions qui ne sont pas surpassées sur tous les objectifs appartiennent au "front de Pareto".
 4. **Crowding distance** : Mesurer la diversité des solutions dans chaque rang de domination pour favoriser une
