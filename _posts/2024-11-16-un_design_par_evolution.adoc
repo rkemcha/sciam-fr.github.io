@@ -401,7 +401,6 @@ Et dans le domaine de la recherche opérationnelle, il est utilisé pour résoud
 == Les applications des algorithmes évolutionnaires dans le design
 
 
-
 == Java et les algorithmes évolutionnaires
 
 Le langage java est un choix populaire pour implémenter des algorithmes évolutionnaires en raison de sa simplicité,
@@ -469,13 +468,15 @@ computing et de l'IoT.
 Par exemple, une ville intelligente connecte des milliers de capteurs IoT pour surveiller
 divers aspects comme la qualité de l'air, la circulation, ou encore la gestion des déchets.].
 
-image::{{'/images/tsp/smart_city.png' | relative_url}}[image, align="center"]
+image::{{'/images/tsp/smart_city.jpeg' | relative_url}}[image, align="center"]
 
 === Question
 
-Comment déterminer une architecture optimale pour minimiser la latence et maximiser le débit, afin que nos microservices
-puissent traiter les données en temps réel, tout en tenant compte des contraintes telles que la scalabilité,
-la sécurité et les coûts ?
+
+Comment déterminer une architecture optimale pour nos cluster(s) Kafka et la configuration des different brokers et
+la taille des machines (RAM, CPU, DISK, Network ...) à utiliser pour chaque nœud de  pour minimiser la latence et
+maximiser le débit, afin que nos microservices puissent échanger les données en temps réel, tout en tenant compte des
+contraintes telles que la scalabilité, le temps de réponse et les coûts ?
 
 === Problème avec les méthodes classiques
 
@@ -495,12 +496,13 @@ complexité des paramètres à considérer (latence réseaux, partitions, charge
 
 === NSGA-II : Une approche évolutionnaire pour l’optimisation multi-objectifs
 
-Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme
+Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme un des algorithmes communément utilisés dans ce contexte qui est
 *NSGA-II (Non-dominated Sorting Genetic Algorithm II)*, une méthode bien adaptée aux problèmes d'optimisation multi-objectifs.
 Cet algorithme est conçu pour trouver des solutions optimales en équilibrant plusieurs objectifs contradictoires, tels que :
 - Minimiser la latence.
 - Maximiser les performances globales.
 - Réduire les coûts.
+- Maximiser la scalabilité.
 
 ==== Étapes principales de NSGA-II :
 
