@@ -76,7 +76,7 @@ Si on veux une representation mathématiques de ce problème, on peut le défini
 Soit \(𝑉 = \{c_1, c_2, c_3,..., c_𝑛\} \) l'ensemble des villes à visiter, et \( d(i, j) \) la distance entre les villes 𝑖 et 𝑗.
 Une matrice de distance \((D)\) est définie telle que \( D[i, j] \) = \( d(i, j) \) pour tout 𝑖, 𝑗 ∈ 𝑉.
 
-En sortie nous aurons besoin de trouver une permutation \(𝜋 = (𝜋_1, 𝜋_2, ..., 𝜋_𝑛) \) de l'ensemble \(𝑉\) telle que le
+En sortie, nous aurons besoin de trouver une permutation \(𝜋 = (𝜋_1, 𝜋_2, ..., 𝜋_𝑛) \) de l'ensemble \(𝑉\) telle que le
 cout total de la tournée soit minimal, c'est-à-dire que la somme des distances entre les villes successives :
 
 stem:[\text{t}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\]]
@@ -258,9 +258,8 @@ Ce processus échange des portions des chromosomes des parents pour générer de
 
 La programmation évolutionnaire (EP) est une approche d'optimisation stochastique inspirée de l'évolution biologique,
 qui fait partie des algorithmes évolutionnaires.
-Elle a été introduite dans les années 1960 par
-*Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes d'optimisation complexes, principalement dans
-le cadre de l'ingénierie et de la conception de systèmes.
+Elle a été introduite dans les années 1960 par*Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes
+d'optimisation complexes, principalement dans le cadre de l'ingénierie et de la conception de systèmes.
 La programmation évolutionnaire se distingue des autres algorithmes évolutionnaires (comme les algorithmes génétiques)
 par son approche simplifiée et la manière dont elle gère la population et la sélection des solutions candidates.
 
@@ -272,7 +271,8 @@ GP utilise des arbres de syntaxe où les nœuds représentent des opérateurs et
 
 Le processus commence par une population initiale d'arbres générés aléatoirement, suivie de l'évaluation de leur
 performance à résoudre le problème via une fonction de fitness.
-Ensuite, les meilleurs individus sont sélectionnés pour la reproduction, où le croisement et la mutation sont utilisés pour générer de nouvelles solutions.
+Ensuite, les meilleurs individus sont sélectionnés pour la reproduction, où le croisement et la mutation sont utilisés
+pour générer de nouvelles solutions.
 
 GP est appliquée dans des domaines variés, tels que la création automatique de logiciels,
 l'optimisation de modèles d'apprentissage automatique, la conception de circuits électroniques,
@@ -290,8 +290,17 @@ Les MOEA sont une classe d'algorithmes évolutionnaires conçus pour résoudre d
 plusieurs objectifs simultanément.
 Contrairement aux problèmes d'optimisation classiques où un seul objectif est maximisé ou minimisé, les problèmes
 multi-objectifs comportent plusieurs critères contradictoires ou complémentaires à prendre en compte, l'objectif
-est de trouver un ensemble de solutions optimales, appelées front de Pareto, plutôt qu'une seule solution optimale.
-Le front de Pareto représente un ensemble de solutions où aucune ne peut être améliorée dans un objectif sans détériorer un autre objectif.
+est de trouver un ensemble de solutions optimales, appelées *Front Pareto* footnote:frontpareto[La frontière de Pareto,
+ou front de Pareto, est un concept fondamental dans l'optimisation multi-objectifs.
+Elle représente l'ensemble des solutions non dominées dans un problème où plusieurs critères ou objectifs
+sont pris en compte.
+Dans ce contexte, une solution est dite dominée si une autre solution est au moins aussi
+bonne dans tous les objectifs et strictement meilleure dans au moins un objectif.
+Les solutions non dominées forment donc ce qu'on appelle la frontière de Pareto.]
+
+], plutôt qu'une seule solution optimale.
+Le front de Pareto représente un ensemble de solutions où aucune ne peut être améliorée dans un objectif sans
+détériorer un autre objectif.
 
 === Évolution différentielle (DE)
 
@@ -388,49 +397,9 @@ Et dans le domaine de la recherche opérationnelle, il est utilisé pour résoud
 
 *Mais comment l'utiliser dans notre domaine à nous qui sommes le la conception et l'architecture développement logiciel ?*
 
+
 == Les applications des algorithmes évolutionnaires dans le design
 
-
-=== Les algorithmes évolutionnaires au cœur du cloud computing
-
-Nous allons formuler le problème comme suite : Dans un ou plusieurs clusters Kafka avec plusieurs brokers dans chaque cluster
-et une infrastructure de communication cellulaire et des milliers, voir des millions de captures et d'infrastructure IoT
-et nous voulons trouver et centaines d'api avec des protocols diverses et des milliers de microservices et d'applications.
-footnote:cloud[Ce type d'architecture n'est pas une creation fictive, mais une réalité dans le monde du cloud computing et IoT,
-où les entreprises doivent gérer des infrastructures complexes et distribuées pour répondre aux besoins de leurs clients, un simple exemple :
-Une ville intelligente connecte des milliers de capteurs IoT pour surveiller la qualité de l'air, la circulation, les déchets, etc.]
-
-image::{{'/images/tsp/smart_city.png' | relative_url}}[image,align="center"]
-
-
-La question est comment trouver la meilleure configuration pour minimiser le temps de latence et maximiser le débit,
-pour nos microservices qui vont utiliser ce cluster pour effectuer des traitements en temps réel, comment pouvons-nous faire cela ?
-
-Il y a une manière simple de le faire, c'est de tester toutes les configurations possibles et de choisir la meilleure
-manuellement, c'est-à-dire, on va prendre une configuration C1, on va la tester,
-puis on va prendre une autre configuration C2, on va la tester et ainsi de suite.
-
-Mais si on a stem:[\begin{equation} 10 \end{equation}] composants et services, et chaque broker peut avoir
-stem:[\begin{equation} 10 \end{equation}] configurations différentes, cela nous donne un nombre de
-stem:[\begin{equation} 10^{10} \end{equation}] configurations possibles,
-ce qui rend la tâche impossible à faire manuellement ou meme avec les outils d'automatisation de test et deployments,
-car le temps de test et de validation sera très long, cela sans compter le fait que sur un cluster il y a aussi beaucoup
-de paramètres à prendre en compte, comme la charge, la taille des messages, la configuration des partitions, la latence disque, la mémoire,
-le CPU,  la disponibilité, la redondance, la sécurité, la scalabilité, la performance, la maintenance, etc.
-
-Dans ce cas, les algorithmes évolutionnaires peuvent être utilisés pour trouver la meilleure configuration possible en un temps raisonnable.
-En modélisant notre problème comme un problème d'optimisation multi-objectifs, où nous cherchons à minimiser le temps de
-latence et maximiser les performances et réduire les coûts en même temps.
-
-Nous pouvons commencer par une population initiale de configurations aléatoires, puis évaluer chaque configuration en
-fonction de ses performances et de ses fitness, et sélectionner les meilleures configurations pour la reproduction,
-le croisement et la mutation.
-
-En itérant ce processus sur plusieurs générations, nous pouvons converger vers des configurations optimales qui répondent
-à nos critères de performance et de qualité.
-
-Cela nous permet de trouver des solutions innovantes et efficaces qui auraient été difficiles voir impossible à
-découvrir par des méthodes traditionnelles.
 
 
 == Java et les algorithmes évolutionnaires
@@ -451,7 +420,23 @@ Il prend en charge plusieurs types d'algorithmes évolutionnaires et techniques 
 * Algorithmes génétiques (AG)
 * Programmation évolutionnaire (EP)
 * Programmation génétique (GP)
-* Algorithmes évolutionnaires multi-objectifs (MOEA) comme NSGA-II, SPEA2, IBEA, etc.
+* Algorithmes évolutionnaires multi-objectifs (MOEA) comme NSGA-II footnote:nsga[*NSGA-II (Non-dominated Sorting Genetic Algorithm II)*
+ est un algorithme d'optimisation multi-objectifs largement utilisé en recherche opérationnelle et en informatique pour
+ résoudre des problèmes complexes impliquant plusieurs objectifs conflictuels.
+ Il s'appuie sur les principes de l'évolution naturelle, comme la sélection, la mutation et le croisement,
+ et est particulièrement adapté pour des problèmes où l'espace des solutions est vaste et difficile
+ à explorer par des méthodes traditionnelles.], SPEA2 footnote:spea2[*SPEA2 (Strength Pareto Evolutionary Algorithm 2)*
+ est un algorithme évolutionnaire conçu pour résoudre des problèmes d'optimisation multi-objectifs.
+ Il s'agit d'une amélioration du premier algorithme SPEA (Strength Pareto Evolutionary Algorithm),
+ visant à trouver un ensemble de solutions qui approximent la frontière de Pareto du problème,
+ c'est-à-dire l'ensemble des solutions non dominées où aucune solution n'est strictement meilleure
+ qu'une autre dans tous les objectifs.], IBEA footnote:ibea[*IBEA (Indicator-Based Evolutionary Algorithm)*
+ est un algorithme évolutionnaire conçu pour résoudre des problèmes d'optimisation multi-objectifs.
+ Il se distingue des autres algorithmes multi-objectifs en utilisant des indicateurs pour guider
+ la recherche de solutions plutôt que de se baser uniquement sur les principes de dominance de Pareto.
+ L'IBEA est particulièrement adapté aux problèmes complexes où il est difficile de définir une fonction
+ de dominance simple, et il a pour objectif d'optimiser à la fois la convergence (proximité de Front de Pareto)
+ et la diversité (répartition des solutions)], etc.
 * Optimisation par colonies de fourmis, etc.
 
 Il est principalement utilisé dans des contextes où plusieurs objectifs sont en jeu et où il n'y a pas de solution
@@ -460,7 +445,7 @@ unique optimale, mais plutôt un ensemble de solutions compromis, connu sous le 
 === MOEA Framework
 https://www.moeaframework.org:[MOEA Framework, window=_blank] est une bibliothèque Java open-source
 footnote:moea[Le code source de la bibliothèque se trouve sur ce lien :
-https://github.com/MOEAD/moea-framework:[GitHub, window=_blank]] conçue pour
+https://github.com/MOEAD/moea-framework:[MOEA GitHub, window=_blank]] conçue pour
 l'optimisation multi-objectifs basée sur des algorithmes évolutionnaires. Elle est très populaire dans la communauté
 de la recherche et de l’industrie pour résoudre des problèmes où plusieurs objectifs doivent être optimisés simultanément.
 Le framework offre une large gamme d'algorithmes d'optimisation multi-objectifs et des outils pour l’évaluation,
@@ -473,18 +458,83 @@ et d'autres techniques populaires d'optimisation.
 Le framework est conçu pour être extensible et personnalisable, permettant aux utilisateurs de définir leurs propres problèmes,
 algorithmes et opérateurs d'évolution.
 
-=== Platypus Framework
-https://platypus.readthedocs.io/en/latest/index.html:[Platypus, window=_blank] est un framework Java open source footnote:platypus[Le code source de Platypus se trouve sur ce repository
-https://github.com/Project-Platypus/Platypus:[Github, window=_blank]] conçu pour l'optimisation multi-objectifs.
-Il est utilisé principalement pour les problèmes d'optimisation combinatoire.
-Bien qu'il ne soit pas aussi largement adopté que jMetal ou MOEA, Platypus se distingue par sa capacité
-à résoudre des problèmes multi-objectifs complexes en combinant la flexibilité des algorithmes évolutionnaires avec
-un ensemble d'outils pour manipuler des solutions de manière efficace.
+
+== Les algorithmes évolutionnaires au cœur des architectures cloud
+Dans un ou plusieurs clusters Kafka composés de plusieurs brokers par cluster,
+avec une infrastructure de communication cellulaire `5G`, des milliers de capteurs IoT, une diversité
+d'API utilisant différents protocoles, et des milliers de microservices et d'applications, nous faisons face à un
+problème d'optimisation complexe footnote:[Ce type d'architecture n'est pas une hypothèse théorique,
+mais une réalité dans le domaine du cloud
+computing et de l'IoT.
+Par exemple, une ville intelligente connecte des milliers de capteurs IoT pour surveiller
+divers aspects comme la qualité de l'air, la circulation, ou encore la gestion des déchets.].
+
+image::{{'/images/tsp/smart_city.png' | relative_url}}[image, align="center"]
+
+=== Question
+
+Comment déterminer une architecture optimale pour minimiser la latence et maximiser le débit, afin que nos microservices
+puissent traiter les données en temps réel, tout en tenant compte des contraintes telles que la scalabilité,
+la sécurité et les coûts ?
+
+=== Problème avec les méthodes classiques
+
+Une approche classique consisterait à tester manuellement toutes les architectures et leurs configurations possibles.
+Par exemple :
+
+- Prendre une architecture `A1` avec une configuration des composants et service `C1`, effectuer un test.
+- Passer à une configuration `A1` avec une configuration `C2`, et ainsi de suite.
+
+Et puis passer vers différentes architectures `A2`, `A3`, etc.
+
+Cependant, avec *stem:[\begin{equation} 10 \end{equation}]* composants ou services, et chaque micro-service, broker pouvant avoir
+*stem:[\begin{equation} 10 \end{equation}]* configurations possibles, cela donne un total de
+*stem:[\begin{equation} 10^{10} \end{equation}]* configurations.
+Tester un tel volume est impraticable, même avec des outils d'automatisation, en raison du temps requis et de la
+complexité des paramètres à considérer (latence réseaux, partitions, charge, mémoire, CPU, disponibilité, etc.)
+
+=== NSGA-II : Une approche évolutionnaire pour l’optimisation multi-objectifs
+
+Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme
+*NSGA-II (Non-dominated Sorting Genetic Algorithm II)*, une méthode bien adaptée aux problèmes d'optimisation multi-objectifs.
+Cet algorithme est conçu pour trouver des solutions optimales en équilibrant plusieurs objectifs contradictoires, tels que :
+- Minimiser la latence.
+- Maximiser les performances globales.
+- Réduire les coûts.
+
+==== Étapes principales de NSGA-II :
+
+1. **Initialisation** : Générer une population initiale de configurations aléatoires.
+2. **Évaluation** : Mesurer les performances de chaque configuration selon les objectifs (latence, débit, etc.)
+3. **Tri par domination** : Classer les solutions en fonction de leur non-domination.
+Les solutions qui ne sont pas surpassées sur tous les objectifs appartiennent au "front de Pareto".
+4. **Crowding distance** : Mesurer la diversité des solutions dans chaque rang de domination pour favoriser une
+exploration équilibrée.
+5. **Opérations génétiques** :
+- Sélection des solutions les plus prometteuses.
+- Recombinaison (croisement) pour générer de nouvelles configurations.
+- Mutation pour introduire de la diversité.
+6. **Itérations** : Répéter le processus sur plusieurs générations pour faire converger la population vers une solution optimale.
+
+==== Avantages de NSGA-II :
+
+- **Frontière de Pareto** : Permet d'obtenir un ensemble de solutions optimales, laissant aux décideurs le choix parmi
+plusieurs compromis entre les objectifs.
+- **Efficacité computationnelle** : Réduit la complexité grâce à des mécanismes optimisés comme le tri
+rapide des solutions dominées.
+- **Diversité des solutions** : Garantit une exploration équilibrée de l'espace des configurations.
+
+=== Conclusion
+
+En utilisant NSGA-II, nous pouvons naviguer efficacement dans l'immense espace des configurations possibles et
+découvrir des solutions innovantes et performantes, tout en répondant aux exigences multi-objectifs de notre système.
+
 
 == Conclusion
 
 Les algorithmes évolutionnaires permettent de repenser le processus de design en combinant puissance de calcul et créativité humaine.
-Ils offrent une approche unique pour créer des produits, des structures et des systèmes innovants, fonctionnels et adaptés aux besoins modernes.
+Ils offrent une approche unique pour créer des produits, des structures et des systèmes innovants, fonctionnels et
+adaptés aux besoins modernes.
 Ou les methods et les outils transitionnels ne peuvent pas atteindre.
 
 
