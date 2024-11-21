@@ -166,17 +166,34 @@ Ils évoluent de manière itérative afin d'explorer l'espace de recherche pour 
 Dans ce contexte, on utilise un critère de fitness pour évaluer et comparer les solutions, permettant de sélectionner
 et d'améliorer les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
 
-[NOTE]
-====
-Dans le prélude, le premier exemple de permutation des chaînes de caractères présente une complexité de l'ordre de
-\(O(n!)\) ce qui la rend comparable à celle du problème du voyageur de commerce.
-Cependant, la différence réside dans le fait que, pour la permutation,
-l'objectif est de produire toutes les permutations possibles, tandis que, dans le problème du voyageur de commerce,
-il s'agit d'identifier la meilleure solution parmi toutes celles qui sont envisageables.
-De plus, le problème du voyageur de commerce inclut des contraintes spécifiques, ce qui n'est pas le cas pour la permutation.
-Cette distinction est essentielle, car elle classe l'un des algorithmes dans la catégorie des algorithmes exacts et
-l'autre dans celle des algorithmes évolutionnaires.
-====
+=== Simple comparaison entre le calcul des permutations et le problème du voyageur de commerce (TSP)
+Le calcul des permutations et le problème du voyageur de commerce (TSP) illustrent bien la différence entre un problème
+exact et déterministe et un problème nécessitant une métaheuristique.
+Le calcul des permutations consiste à générer toutes les combinaisons possibles d'un ensemble donné,
+ce qui est un problème exact : il n'a pas de contraintes spécifiques, et un algorithme déterministe peut produire
+l'ensemble complet des solutions avec une complexité de `O(n!)`.
+En revanche, le TSP, qui vise à trouver le chemin
+le plus court visitant un ensemble de villes, est un problème NP-difficile.
+Il requiert de choisir une solution optimale parmi de nombreuses possibilités tout en respectant des contraintes
+(distances, coûts, etc.).
+
+Bien que sa résolution exacte ait également une complexité de `O(n!)`, cela devient impraticable pour de grands ensembles,
+d'où le recours à des métaheuristiques (comme les algorithmes génétiques ou les colonies de fourmis) qui trouvent
+des solutions approximatives, mais efficaces en temps réduit.
+Ainsi, la permutation explore toutes les solutions possibles, tandis que le TSP nécessite d'identifier
+la meilleure solution dans un espace de recherche beaucoup plus complexe.
+
+[cols="3", options="header"]
+|===
+| **Aspect**              | **Calcul des Permutations**             | **Problème du Voyageur de Commerce**
+
+| **Objectif**            | Générer toutes les solutions possibles. | Trouver la meilleure solution parmi toutes.
+| **Solution requise**    | Ensemble complet des permutations.      | Un chemin optimal ou quasi-optimal.
+| **Complexité**          | `O(n!)`                                 | `O(n!)` pour exact, mais métaheuristique réduit.
+| **Contraintes**         | Aucune contrainte particulière.         | Inclut des contraintes spécifiques (distances, coûts).
+| **Type d'algorithme**   | Exact et déterministe.                  | Exact (impraticable à grande échelle) ou métaheuristique.
+|===
+
 
 == Les Algorithmes Évolutionnaires : Inspirés par la Nature
 
@@ -411,6 +428,15 @@ Et dans le domaine de la recherche opérationnelle, il est utilisé pour résoud
 
 
 == Les applications des algorithmes évolutionnaires dans le design
+Les *algorithmes évolutionnaires (AÉ)* sont largement utilisés dans le domaine du *design* grâce à leur capacité à
+explorer efficacement de vastes espaces de solutions et à optimiser des problèmes complexes.
+Dans le *design industriel*, ils permettent de créer des produits innovants en optimisant des critères comme
+la **résistance**, le **poids** ou le **coût**, par exemple pour concevoir des formes aérodynamiques ou des composants mécaniques.
+En *architecture* et *design urbain*, les AÉ sont employés pour générer des **plans de bâtiments** ou des
+**modèles urbains** répondant à des contraintes environnementales ou esthétiques. Dans le *design génératif*,
+ils aident à explorer des concepts créatifs en générant automatiquement des **formes artistiques** ou des
+**patrons visuels**. Enfin, dans le *design d'interfaces* ou de systèmes, les AÉ sont utilisés pour optimiser
+les **flux d'interaction** ou concevoir des **interfaces utilisateur** efficaces et intuitives.
 
 
 == Java et les algorithmes évolutionnaires
@@ -470,7 +496,7 @@ Le framework est conçu pour être extensible et personnalisable, permettant aux
 algorithmes et opérateurs d'évolution.
 
 === Opt4J
-Opt4J est une bibliothèque Java pour l'optimisation basée sur les
+https://github.com/sdarg/opt4j:[Opt4J, window=_blank] est une bibliothèque Java pour l'optimisation basée sur les
 ``métaheuristiques``, particulièrement adaptée pour la recherche.
 Elle offre une intégration modulaire, ce qui permet de combiner différents algorithmes pour résoudre des problèmes d'optimisation.
 
@@ -505,17 +531,16 @@ la taille des machines (RAM, CPU, DISK, Network ...) à utiliser pour chaque nœ
 maximiser le débit, afin que nos microservices puissent échanger les données en temps réel, tout en tenant compte des
 contraintes telles que la scalabilité, le temps de réponse et les coûts ?
 
-=== Problème avec les méthodes classiques
+=== Résoudre le problème avec une approche traditionnelle
 
 Une approche classique consisterait à tester manuellement toutes les architectures et leurs configurations possibles.
-Par exemple :
+Ce qui doit être extrêmement coûteux en temps et en ressources, car une approche intuitive serait de :
+prendre une arbitraire architecture `A1` avec une configuration des composants et service `C1`, effectuer un test reel
+et attendre les résultats apres un certain temps, faire un benchmarking pour passer à une configuration `C2`, ce qui peut
+impliquer de changer la taille des machines, le nombre de brokers, le nombre de partitions, etc.
+Et faire la meme chose avec une autre architecture `A2`, `A3`, etc.
 
-- Prendre une architecture `A1` avec une configuration des composants et service `C1`, effectuer un test.
-- Passer à une configuration `A1` avec une configuration `C2`, et ainsi de suite.
-
-Et puis passer vers différentes architectures `A2`, `A3`, etc.
-
-Cependant, avec *stem:[\begin{equation} 10 \end{equation}]* composants ou services, et chaque micro-service, broker pouvant avoir
+Cependant, avec *stem:[\begin{equation} 10 \end{equation}]* broker pouvant avoir
 *stem:[\begin{equation} 10 \end{equation}]* configurations possibles, cela donne un total de
 *stem:[\begin{equation} 10^{10} \end{equation}]* configurations.
 Tester un tel volume est impraticable, même avec des outils d'automatisation, en raison du temps requis et de la
@@ -523,8 +548,10 @@ complexité des paramètres à considérer (latence réseaux, partitions, charge
 
 === NSGA-II : Une approche évolutionnaire pour l’optimisation multi-objectifs
 
-Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme un des algorithmes communément utilisés dans ce contexte qui est
-*NSGA-II (Non-dominated Sorting Genetic Algorithm II)*, une méthode bien adaptée aux problèmes d'optimisation multi-objectifs.
+Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme un des algorithmes communément utilisés dans
+ce contexte qui est *NSGA-II (Non-dominated Sorting Genetic Algorithm II)*, une méthode bien adaptée aux problèmes
+d'optimisation multi-objectifs.
+
 Cet algorithme est conçu pour trouver des solutions optimales en équilibrant plusieurs objectifs contradictoires, tels que :
 - Minimiser la latence.
 - Maximiser les performances globales.
