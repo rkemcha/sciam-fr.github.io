@@ -90,7 +90,7 @@ ce qui est très couteux car :
 Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y'a stem:[\begin{equation}9!= 362,880 \end{equation}]
 chemins à explorer.
 
-Pour stem:[\begin{equation} 𝑛 = 20\end{equation}] il y'a  stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}]
+Pour stem:[\begin{equation} 𝑛 = 20\end{equation}] il y a  stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}]
 footnote:nb[Le nombre stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}] est une notation scientifique utilisée
 pour représenter des nombres très grands ou très petits de manière concise.
 Voici comment l’interpréter en valeur exacte 1.22×100,000,000,000,000,000 = 122,000,000,000,000,000 ou 122 quadrillions.] et
@@ -161,10 +161,22 @@ De la même façon que le MVP évolue par étapes en fonction du retour des util
 évaluent, adaptent et optimisent chaque itération pour s’approcher de la solution optimale.
 
 Évidemment, au contraire du MVP, les algorithmes évolutionnaires ne sont pas tenus de produire une solution
-immédiatement ``viable'' ou utilisable à chaque itération.
+immédiatement ``viable`` ou utilisable à chaque itération.
 Ils évoluent de manière itérative afin d'explorer l'espace de recherche pour converger progressivement vers des solutions optimales.
 Dans ce contexte, on utilise un critère de fitness pour évaluer et comparer les solutions, permettant de sélectionner
 et d'améliorer les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
+
+[NOTE]
+====
+Dans le prélude, le premier exemple de permutation des chaînes de caractères présente une complexité de l'ordre de
+\(O(n!)\) ce qui la rend comparable à celle du problème du voyageur de commerce.
+Cependant, la différence réside dans le fait que, pour la permutation,
+l'objectif est de produire toutes les permutations possibles, tandis que, dans le problème du voyageur de commerce,
+il s'agit d'identifier la meilleure solution parmi toutes celles qui sont envisageables.
+De plus, le problème du voyageur de commerce inclut des contraintes spécifiques, ce qui n'est pas le cas pour la permutation.
+Cette distinction est essentielle, car elle classe l'un des algorithmes dans la catégorie des algorithmes exacts et
+l'autre dans celle des algorithmes évolutionnaires.
+====
 
 == Les Algorithmes Évolutionnaires : Inspirés par la Nature
 
@@ -258,7 +270,7 @@ Ce processus échange des portions des chromosomes des parents pour générer de
 
 La programmation évolutionnaire (EP) est une approche d'optimisation stochastique inspirée de l'évolution biologique,
 qui fait partie des algorithmes évolutionnaires.
-Elle a été introduite dans les années 1960 par*Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes
+Elle a été introduite dans les années 1960 par *Ingo Rechenberg* et *Hans-Paul Schwefel* pour résoudre des problèmes
 d'optimisation complexes, principalement dans le cadre de l'ingénierie et de la conception de systèmes.
 La programmation évolutionnaire se distingue des autres algorithmes évolutionnaires (comme les algorithmes génétiques)
 par son approche simplifiée et la manière dont elle gère la population et la sélection des solutions candidates.
@@ -457,6 +469,21 @@ et d'autres techniques populaires d'optimisation.
 Le framework est conçu pour être extensible et personnalisable, permettant aux utilisateurs de définir leurs propres problèmes,
 algorithmes et opérateurs d'évolution.
 
+=== Opt4J
+Opt4J est une bibliothèque Java pour l'optimisation basée sur les
+``métaheuristiques``, particulièrement adaptée pour la recherche.
+Elle offre une intégration modulaire, ce qui permet de combiner différents algorithmes pour résoudre des problèmes d'optimisation.
+
+=== ECJ
+ECJ (Evolutionary Computation in Java) est un système de calcul évolutionnaire écrit en Java.
+Il a été conçu pour être extrêmement flexible, permettant aux utilisateurs de configurer presque toutes les classes
+et leurs paramètres dynamiquement à l'exécution à l'aide d'un fichier de paramètres fourni par l'utilisateur.
+Les structures du système sont organisées de manière à être facilement modifiables tout en maintenant une grande efficacité.
+
+ECJ est développé par l'ECLab (Evolutionary Computation Laboratory) de l'Université George Mason.
+Bien qu'il partage ses initiales avec Evolutionary Computation Journal, le logiciel n'a aucun lien avec cette publication.
+ECJ possède un projet "sœur" appelé MASON, un système de simulation multi-agents conçu pour bien s'intégrer avec ECJ.
+
 
 == Les algorithmes évolutionnaires au cœur des architectures cloud
 Dans un ou plusieurs clusters Kafka composés de plusieurs brokers par cluster,
@@ -531,9 +558,10 @@ exploration équilibrée.
 5. **Opérations génétiques** :
 - Sélection des solutions les plus prometteuses.
 - Recombinaison (croisement) pour générer de nouvelles configurations.
-- Mutation pour introduire de la diversité.
+- Mutation : Nous ajoutons des modifications aléatoires, comme réduire ou augmenter la quantité de RAM,
+ajouter un autre type de machine ou modifier les règles de mise à l'échelle automatique.
+Par exemple, une configuration avec `3 machines moyennes pourrait être mutée pour ajouter une mise à l'échelle automatique en fonction de la charge.
 6. **Itérations** : Répéter le processus sur plusieurs générations pour faire converger la population vers une solution optimale.
-
 
 ==== Avantages de NSGA-II :
 
@@ -546,7 +574,6 @@ rapide des solutions dominées.
 
 En utilisant NSGA-II, nous pouvons naviguer efficacement dans l'immense espace des configurations possibles et
 découvrir des solutions innovantes et performantes, tout en répondant aux exigences multi-objectifs de notre système.
-
 
 == Conclusion
 Les algorithmes évolutionnaires permettent de repenser le processus de design en combinant puissance de calcul et créativité humaine.
