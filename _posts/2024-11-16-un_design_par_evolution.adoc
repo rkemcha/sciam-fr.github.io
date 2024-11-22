@@ -30,12 +30,15 @@ chiffre gigantesque : un 1 suivi de 80 zéros.
 Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
 
 Et dans un autre univers qui est l'univers *mathématique*.
-Il existe des nombres qui sont encore plus grand que le nombre d'atomes et de loin, et voici deux exemples :
+Il existe des nombres qui sont encore plus grand que le nombre d'atomes dans l'univers visible et de loin, et voici deux exemples :
 
-Nous avons sequence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
-**``ABC``**, **``ACB``**, **``BAC``**, **``BCA``**, **``CAB``**, **``CBA``**, soit un total de ``6`` permutations.
+Nous avons une sequence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
+**``ABC``**, **``ACB``**, **``BAC``**, **``BCA``**, **``CAB``**, **``CBA``**, soit un total de ``6``
+permutations, ce qui est facile à calculer, mais imaginez que nous avons une sequence de lettres plus longue,
+disons ``71`` lettres!
 
-Mais imaginez maintenant que nous devons trouver la meilleure solution pour le problème Suivant :
+Maintenant, nous devons trouver la meilleure solution pour le problème Suivant :
+
 Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois, avant de revenir à sa ville de départ.
 Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale
 parcourue et/ou le coût total.
@@ -78,7 +81,7 @@ image::{{'/images/tsp/traveling.png' | relative_url}}[image,align="center"]
 Les algorithmes exacts (déterministes) jouent un rôle fondamental dans la résolution de nombreux problèmes dans divers domaines,
 qu'il s'agisse de tri de données, de recherche de chemins optimaux, ou encore de résolution d’équations complexes.
 
-Cependant, face à des problèmes dits `NP-difficiles' footnote:np-difficult[En informatique théorique,
+Cependant, face à des problèmes dits `NP-difficiles'footnote:np-difficult[En informatique théorique,
 le terme "NP-difficiles" (ou NP-hard en anglais) désigne une classe
 de problèmes qui sont au moins aussi difficiles à résoudre que les problèmes de la classe
 NP (Non-deterministic Polynomial time); Example : Le célèbre problème du voyageur de commerce
@@ -94,7 +97,7 @@ Les algorithmes approximatifs ou méta-heuristiques footnote:meta[Les méta-heur
 avancées conçues pour résoudre des problèmes complexes, souvent difficiles à traiter par des algorithmes exacts en
 raison de la taille ou de la complexité de l'espace de recherche. Ces approches utilisent des stratégies globales
 et adaptatives pour explorer efficacement l'espace des solutions et trouver des solutions optimales ou
-quasi-optimales dans un temps raisonnable], quant à eux, apportent une approche différente pour obtenir des solutions
+quasi-optimales dans un temps raisonnable.], quant à eux, apportent une approche différente pour obtenir des solutions
 proches de l'optimum dites quasi-optimales dans des délais raisonnables, ce qui est souvent suffisant pour
 les applications pratiques.
 
@@ -102,7 +105,7 @@ Une des classes des méta-heuristiques est celle des algorithmes évolutionnaire
 'algorithmes génétiques' dont l'approche est inspirée des mécanismes de l'évolution naturelle.
 
 En simulant des processus tels que la sélection, le croisement et la mutation, les algorithmes évolutionnaires
-génèrent progressivement des solutions optimales ou quasi-optimales contrairement aux algorithmes exactes qui peuvent
+génèrent progressivement des solutions optimales ou quasi-optimales contrairement aux algorithmes exacts qui peuvent
 être bloqués par des solutions locales ou des configurations complexes.
 
 Au-delà de la résolution de problèmes spécifiques, les algorithmes évolutionnaires se distinguent par leur efficacité
@@ -145,7 +148,7 @@ de possibilités tout en respectant des contraintes (distances, coûts, etc.).
 
 Bien que la résolution exacte du TSP ait aussi une complexité de `O(n!)`, cela devient impraticable pour de nombreux points.
 On utilise donc des **métaheuristiques** (comme les algorithmes génétiques), qui permettent de trouver des
-solutions *approximatives* mais efficaces en temps raisonnable.
+solutions *approximatives,* mais efficaces en temps raisonnable.
 
 *En résumé :*
 
