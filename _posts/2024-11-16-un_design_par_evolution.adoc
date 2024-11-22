@@ -36,7 +36,7 @@ En voici deux exemples :
 Nous avons une sequence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
 **``ABC``**, **``ACB``**, **``BAC``**, **``BCA``**, **``CAB``**, **``CBA``**, soit un total de ``6``
 permutations, ce qui est facile à calculer. Mais imaginez que nous avons une sequence de lettres plus longue,
-disons ``71`` lettres!
+disons ``71`` lettres! et nous devons trouver toutes les permutations possibles!!.
 
 Maintenant, nous devons trouver la meilleure solution pour le problème suivant :
 
