@@ -11,6 +11,25 @@
 
 == Prelude
 
+Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement d'une inimaginable
+densité et énergie : le Big Bang.
+Cet instant initial ne fut pas une explosion dans l'espace,
+mais plutôt une expansion de l'espace lui-même.
+Le temps, l'espace et la matière sont nés ensemble, jaillissant d'une singularité mystérieuse.
+
+Dans ses premiers instants, l'Univers était une soupe chaude et dense de particules élémentaires :
+quarks, électrons, photons et autres.
+À mesure qu'il s'étendait, cette soupe refroidit.
+
+Quelques centaines de milliers d'années après le Big Bang, les quarks se lièrent pour former des
+protons et des neutrons, et ces derniers se combinèrent pour donner naissance aux premiers noyaux
+atomiques.
+
+Les scientifiques estiment qu'il existe environ 10⁸⁰ atomes dans l'Univers visible, soit un
+chiffre gigantesque : un 1 suivi de 80 zéros.
+Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
+
+
 Nous avons une sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
 Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive.
 Voici un exemple simple en Java pour qui nous permet de trouver la solution.
@@ -72,7 +91,7 @@ Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois
 Les distances entre les villes sont connues, et le but est de déterminer l'itinéraire qui minimise la distance totale
 parcourue et/ou le coût total.
 
-Si on veux une representation mathématiques de ce problème, on peut le définir comme suit :
+Si on veut une representation mathématiques de ce problème, on peut le définir comme suit :
 Soit \(𝑉 = \{c_1, c_2, c_3,..., c_𝑛\} \) l'ensemble des villes à visiter, et \( d(i, j) \) la distance entre les villes 𝑖 et 𝑗.
 Une matrice de distance \((D)\) est définie telle que \( D[i, j] \) = \( d(i, j) \) pour tout 𝑖, 𝑗 ∈ 𝑉.
 
@@ -532,7 +551,6 @@ maximiser le débit, afin que nos microservices puissent échanger les données 
 contraintes telles que la scalabilité, le temps de réponse et les coûts ?
 
 === Résoudre le problème avec une approche traditionnelle
-
 Une approche classique consisterait à tester manuellement toutes les architectures et leurs configurations possibles.
 Ce qui doit être extrêmement coûteux en temps et en ressources, car une approche intuitive serait de :
 prendre une arbitraire architecture `A1` avec une configuration des composants et service `C1`, effectuer un test reel
@@ -547,7 +565,6 @@ Tester un tel volume est impraticable, même avec des outils d'automatisation, e
 complexité des paramètres à considérer (latence réseaux, partitions, charge, mémoire, CPU, disponibilité, etc.)
 
 === NSGA-II : Une approche évolutionnaire pour l’optimisation multi-objectifs
-
 Pour résoudre ce problème efficacement, nous pouvons utiliser l'algorithme un des algorithmes communément utilisés dans
 ce contexte qui est *NSGA-II (Non-dominated Sorting Genetic Algorithm II)*, une méthode bien adaptée aux problèmes
 d'optimisation multi-objectifs.
@@ -591,7 +608,6 @@ Par exemple, une configuration avec `3 machines moyennes pourrait être mutée p
 6. **Itérations** : Répéter le processus sur plusieurs générations pour faire converger la population vers une solution optimale.
 
 ==== Avantages de NSGA-II :
-
 - **Frontière de Pareto** : Permet d'obtenir un ensemble de solutions optimales, laissant aux décideurs le choix parmi
 plusieurs compromis entre les objectifs.
 - **Efficacité computationnelle** : Réduit la complexité grâce à des mécanismes optimisés comme le tri
