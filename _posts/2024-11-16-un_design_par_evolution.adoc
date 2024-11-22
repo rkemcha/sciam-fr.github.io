@@ -135,23 +135,19 @@ Dans ce contexte, on utilise un critère de fitness pour évaluer et comparer le
 et d'améliorer les meilleures configurations à chaque génération, même si elles ne sont pas directement applicables dans l’immédiat.
 
 === Simple comparaison entre le calcul des permutations et le problème du voyageur de commerce (TSP)
-Le calcul des permutations et le problème du voyageur de commerce (TSP) illustrent bien la différence entre un problème
-exact et déterministe et un problème nécessitant une métaheuristique.
-Le calcul des permutations consiste à générer toutes les combinaisons possibles d'un ensemble donné,
-ce qui est un problème exact : il n'a pas de contraintes spécifiques, et un algorithme déterministe peut produire
-l'ensemble complet des solutions avec une complexité de `O(n!)`.
-En revanche, le TSP, qui vise à trouver le chemin
-le plus court visitant un ensemble de villes, est un problème NP-difficile.
-Il requiert de choisir une solution optimale parmi de nombreuses possibilités tout en respectant des contraintes
-(distances, coûts, etc.).
+Le calcul des *permutations* consiste à générer toutes les combinaisons possibles d’un ensemble donné.
+C’est un **problème exact** et déterministe : il n’a pas de contraintes complexes, et un algorithme peut
+produire toutes les solutions en `O(n!)`.
 
-Bien que sa résolution exacte ait également une complexité de `O(n!)`, cela devient impraticable pour de grands ensembles,
-d'où le recours à des métaheuristiques (comme les algorithmes génétiques) qui trouvent des solutions approximatives,
-mais efficaces en temps réduit.
+En revanche, le *problème du voyageur de commerce (TSP)* vise à trouver le chemin le plus court pour visiter plusieurs villes.
+C’est un **problème NP-difficile**, car il faut identifier la solution optimale parmi un très grand nombre
+de possibilités tout en respectant des contraintes (distances, coûts, etc.).
 
+Bien que la résolution exacte du TSP ait aussi une complexité de `O(n!)`, cela devient impraticable pour de nombreux points.
+On utilise donc des **métaheuristiques** (comme les algorithmes génétiques), qui permettent de trouver des
+solutions *approximatives* mais efficaces en temps raisonnable.
 
-Ainsi, la permutation explore toutes les solutions possibles, tandis que le TSP nécessite d'identifier
-la meilleure solution dans un espace de recherche beaucoup plus complexe.
+*En résumé :*
 
 [cols="3", options="header"]
 |===
