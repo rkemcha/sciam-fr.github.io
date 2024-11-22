@@ -146,8 +146,10 @@ Il requiert de choisir une solution optimale parmi de nombreuses possibilités t
 (distances, coûts, etc.).
 
 Bien que sa résolution exacte ait également une complexité de `O(n!)`, cela devient impraticable pour de grands ensembles,
-d'où le recours à des métaheuristiques (comme les algorithmes génétiques ou les colonies de fourmis) qui trouvent
-des solutions approximatives, mais efficaces en temps réduit.
+d'où le recours à des métaheuristiques (comme les algorithmes génétiques) qui trouvent des solutions approximatives,
+mais efficaces en temps réduit.
+
+
 Ainsi, la permutation explore toutes les solutions possibles, tandis que le TSP nécessite d'identifier
 la meilleure solution dans un espace de recherche beaucoup plus complexe.
 
