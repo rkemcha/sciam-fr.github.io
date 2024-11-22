@@ -12,7 +12,7 @@
 == Prelude
 
 Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement d'une inimaginable
-densité et énergie : le Big Bang.
+densité et énergie : le *Big Bang*.
 Cet instant initial ne fut pas une explosion dans l'espace,
 mais plutôt une expansion de l'espace lui-même.
 Le temps, l'espace et la matière sont nés ensemble, jaillissant d'une singularité mystérieuse.
@@ -29,8 +29,10 @@ Les scientifiques estiment qu'il existe environ 10⁸⁰ atomes dans l'Univers v
 chiffre gigantesque : un 1 suivi de 80 zéros.
 Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
 
+Et dans un autre univers qui est l'univers mathématique.
+Il existe des nombres qui sont encore plus grand que le nombre d'atomes et de loin, et voici un :
 
-Nous avons une sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
+Nous avons sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
 Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive.
 Voici un exemple simple en Java pour qui nous permet de trouver la solution.
 
