@@ -11,8 +11,8 @@
 
 == Prelude
 
-Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement d'une inimaginable
-densité et énergie : le *Big Bang*.
+Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement
+d'une inimaginable densité et énergie : le *Big Bang*.
 Cet instant initial ne fut pas une explosion dans l'espace,
 mais plutôt une expansion de l'espace lui-même.
 Le temps, l'espace et la matière sont nés ensemble, jaillissant d'une singularité mystérieuse.
@@ -29,64 +29,11 @@ Les scientifiques estiment qu'il existe environ 10⁸⁰ atomes dans l'Univers v
 chiffre gigantesque : un 1 suivi de 80 zéros.
 Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
 
-Et dans un autre univers qui est l'univers mathématique.
-Il existe des nombres qui sont encore plus grand que le nombre d'atomes et de loin, et voici un :
+Et dans un autre univers qui est l'univers *mathématique*.
+Il existe des nombres qui sont encore plus grand que le nombre d'atomes et de loin, et voici deux exemples :
 
-Nous avons sequence de lettres et nous voulons trouver toutes les permutations possibles de cette sequence.
-Ce problème est connu sous le nom de "Permutations" et peut être résolu de manière récursive.
-Voici un exemple simple en Java pour qui nous permet de trouver la solution.
-
-[source,java]
-----
-import java.util.ArrayList;
-import java.util.List;
-
-public class Permutations {
-
-    // Méthode pour générer toutes les permutations d'une chaîne de caractères
-    public static List<String> generatePermutations(String str) {
-        List<String> permutations = new ArrayList<>();
-        permute(str, 0, str.length() - 1, permutations);
-        return permutations;
-    }
-
-    // Méthode récursive pour permuter les caractères
-    private static void permute(String str, int left, int right, List<String> permutations) {
-        if (left == right) {
-            permutations.add(str);
-        } else {
-            for (int i = left; i <= right; i++) {
-                str = swap(str, left, i);
-                permute(str, left + 1, right, permutations);
-                str = swap(str, left, i); // backtrack
-            }
-        }
-    }
-
-    // Méthode pour échanger deux caractères dans une chaîne
-    private static String swap(String str, int i, int j) {
-        char[] charArray = str.toCharArray();
-        char temp = charArray[i];
-        charArray[i] = charArray[j];
-        charArray[j] = temp;
-        return String.valueOf(charArray);
-    }
-
-    // Méthode principale pour tester la génération de permutations
-    public static void main(String[] args) {
-        String str = "ABC";
-        List<String> permutations = generatePermutations(str);
-        System.out.println("Toutes les permutations de " + str + " sont :");
-        for (String perm : permutations) {
-            System.out.println(perm);
-        }
-    }
-}
-
-----
-
-Il y a une autre façon plus efficace de trouver toutes les permutations d'une séquence de lettres, mais ce n'est pas
-notre sujet en ce moment.
+Nous avons sequence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
+**``ABC``**, **``ACB``**, **``BAC``**, **``BCA``**, **``CAB``**, **``CBA``**, soit un total de ``6`` permutations.
 
 Mais imaginez maintenant que nous devons trouver la meilleure solution pour le problème Suivant :
 Un voyageur doit visiter un ensemble de 𝑛 villes, chacune exactement une fois, avant de revenir à sa ville de départ.
@@ -103,7 +50,7 @@ cout total de la tournée soit minimal, c'est-à-dire que la somme des distances
 stem:[\text{t}(\pi) = \sum_{i=1}^{n-1} D[\pi_i, \pi_{i+1}\]]
 
 Et si on calcule la complexité de ce problème, on trouve qu'il est de l'ordre de \(O(n!)\) footnote:fact[La fonction
-factorielle, notée 𝑛!, est une opération mathématique qui multiplie tous les entiers positifs d’un nombre 𝑛 jusqu'à 1
+factorielle, notée 𝑛!, est une opération mathématique qui multiplie tous les entiers positifs d’un nombre 𝑛 jusqu'à 1.
 Elle est utilisée dans de nombreux domaines comme les probabilités, les statistiques, les algorithmes et la combinatoire.
 \(n! = n × (n - 1) × (n - 2) × ... × 2 × 1\)]
 ce qui est très couteux car :
@@ -120,9 +67,9 @@ qui est plus grand que le nombre d'atomes dans l'univers connu ce qui devient in
 footnote:atoms[Le nombre d'atomes dans l'univers observable est estimé à environ 10^80, ce qui signifie que le nombre
 de chemins possibles pour 71 villes dépasse largement ce nombre, en 2004, Carl Sagan a popularisé dans Cosmos l’idée du
 nombre d’atomes dans l’univers observable en discutant de
-l’immensité de l’espace]
+l’immensité de l’éspace]
 
-On appel ce problème le problème du voyageur de commerce *(TSP, Travelling Salesman Problem)*
+On appelle ce problème le problème du voyageur de commerce *(TSP, Travelling Salesman Problem)*
 
 image::{{'/images/tsp/traveling.png' | relative_url}}[image,align="center"]
 
