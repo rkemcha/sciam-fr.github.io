@@ -11,8 +11,7 @@
 
 == Prelude
 
-Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement
-d'une inimaginable densité et énergie : le *Big Bang*.
+Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement d'une inimaginable densité et énergie : le *Big Bang*.
 Cet instant initial ne fut pas une explosion dans l'espace,
 mais plutôt une expansion de l'espace lui-même.
 Le temps, l'espace et la matière sont nés ensemble, jaillissant d'une singularité mystérieuse.
@@ -24,7 +23,10 @@ quarks, électrons, photons et autres.
 Quelques centaines de milliers d'années après le Big Bang, les quarks se lièrent pour former des protons et des neutrons,
 et ces derniers se combinèrent pour donner naissance aux premiers noyaux atomiques.
 
-Les scientifiques estiment qu'il existe environ 10⁸⁰ atomes dans l'Univers visible, soit un chiffre gigantesque :
+Les scientifiques estiment qu'il existe environ \(10^{80}\)  atomesfootnote:atoms[Le nombre d'atomes dans l'univers
+observable est estimé à environ \(10^{80}\).
+En 2004, Carl Sagan a popularisé dans Cosmos l’idée du nombre d’atomes dans l’univers observable en discutant de l’immensité de l’éspace]
+dans l'Univers visible, soit un chiffre gigantesque :
 un 1 suivi de 80 zéros. Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
 
 Et dans un autre univers qui est l'univers *mathématique*, il existe des espaces dont le nombre d'éléments
@@ -67,9 +69,7 @@ pour représenter des nombres très grands ou très petits de manière concise.
 Voici comment l’interpréter en valeur exacte 1.22×100,000,000,000,000,000 = 122,000,000,000,000,000 ou 122 quadrillions.] et
 pour 71 villes, le nombre de chemins candidats est supérieur à stem:[\begin{equation} 70!≈ 5 * 10^{99} \end{equation}]
 qui est plus grand que le nombre d'atomes dans l'univers connu ce qui devient ingérable pour un ordinateur.
-footnote:atoms[Le nombre d'atomes dans l'univers observable est estimé à environ 10^80, ce qui signifie que le nombre
-de chemins possibles pour 71 villes dépasse largement ce nombre. En 2004, Carl Sagan a popularisé dans Cosmos l’idée du
-nombre d’atomes dans l’univers observable en discutant de l’immensité de l’éspace]
+
 
 Ce problème est connu sous le nom du problème du voyageur de commerce *(TSP, Travelling Salesman Problem en anglais)*
 
@@ -443,7 +443,7 @@ ECJ possède un projet "sœur" appelé MASON, un système de simulation multi-ag
 
 Le cloud computing a révolutionné la manière dont les entreprises gèrent leurs infrastructures informatiques,
 mais il introduit également de la complexité et des coûts difficiles à prévoir.
-FinOps émerge comme une réponse pour aligner les décisions financières, techniques et environnementales,
+`FinOps` émerge comme une réponse pour aligner les décisions financières, techniques et environnementales,
 permettant non seulement de maîtriser les dépenses, mais aussi de réduire l’empreinte carbone.
 Cette combinaison est essentielle pour garantir une utilisation durable et efficiente du cloud
 dans un monde de plus en plus dépendant de l'informatique.
@@ -451,7 +451,7 @@ Pour mieux comprendre l’application des algorithmes évolutionnaires, nous all
 des architectures cloud.
 
 Face à un manque de moyens techniques et d'outils fiables, nous nous retrouvons toujours face une situation avec laquelle il
-est très difficile de réaliser de meilleures architectures pour de grandes applications basées sur a architecture microservices.
+est très difficile de réaliser de meilleures architectures pour de grandes applications basées sur a des architecture microservices.
 
 === Case d'utilisation : Optimisation des architectures Kafka dans un environnement cloud
 
@@ -459,8 +459,7 @@ Dans un ou plusieurs clusters Kafka composés de plusieurs brokers par cluster,
 avec une infrastructure de communication cellulaire `5G`, des milliers de capteurs IoT, une diversité
 d'API utilisant différents protocoles, et des milliers de microservices et d'applications, nous faisons face à un
 problème d'optimisation complexe footnote:[Ce type d'architecture n'est pas une hypothèse théorique,
-mais une réalité dans le domaine du cloud
-computing et de l'IoT.
+mais une réalité dans le domaine du cloud computing et de l'IoT.
 Par exemple, une ville intelligente connecte des milliers de capteurs IoT pour surveiller
 divers aspects comme la qualité de l'air, la circulation, ou encore la gestion des déchets.].
 
@@ -550,8 +549,8 @@ Ou les methods et les outils transitionnels ne peuvent pas atteindre.
 == References
 
 [bibliography]
-* Lawler, E.L., Lenstra, J.K., Rinnooy Kan, A.H.G., & Shmoys, D.B, *The Traveling Salesman Problem: A Guided Tour of Combinatorial Optimization*, Wiley, 1985
 * P.J.E. Peebles, *Principles of Physical Cosmologye*, Princeton Univ Pr, Ewing, New Jersey, U.S.A, 1993.
+* Lawler, E.L., Lenstra, J.K., Rinnooy Kan, A.H.G., & Shmoys, D.B, *The Traveling Salesman Problem: A Guided Tour of Combinatorial Optimization*, Wiley, 1985
 * Eiben, A.E., & Smith, J.E., *Introduction to Evolutionary Computing*, Springer, 2003.
 * M.Garey and D.Johnson, *Computers and Intractability. A Guide to the Theory of NP-Completeness.*, Freemann, San Francisco, 1979.
 * C.M. Papadimitriou, *Computational Complexity*, Addison-Wesley, Reading, Massachusetts, 1994.
