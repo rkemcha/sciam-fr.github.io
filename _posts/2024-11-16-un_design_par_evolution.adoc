@@ -73,7 +73,6 @@ qui est plus grand que le nombre d'atomes dans l'univers connu ce qui devient in
 
 Ce problème est connu sous le nom du problème du voyageur de commerce *(TSP, Travelling Salesman Problem en anglais)*
 
-image::{{'/images/tsp/traveling.png' | relative_url}}[image,align="center"]
 
 == Introduction
 
@@ -460,8 +459,6 @@ problème d'optimisation particulièrement complexe footnote:[Ce type d'architec
 mais une réalité dans le domaine du cloud computing et de l'IoT.
 Par exemple, une ville intelligente connecte des milliers de capteurs IoT pour surveiller
 la qualité de l'air, la circulation, ou encore la gestion des déchets.].
-
-image::{{'/images/tsp/smart_city.jpeg' | relative_url}}[image, align="center"]
 
 
 *La question est la suivante : comment concevoir une architecture optimale pour nos clusters `Kafka` et déterminer la configuration idéale
