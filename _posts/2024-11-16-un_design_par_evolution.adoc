@@ -9,22 +9,22 @@
 :page-liquid:
 :page-categories: Intelligence Artificielle, Algorithmes, Programmation génétique
 
-== Prelude
+== Prélude
 
-Il y a environ 13,8 milliards d'années, l'Univers tel que nous le connaissons a émergé d'un événement d'une inimaginable densité et énergie : le *Big Bang*.
+Il y a environ 13,8 milliards d'années, l'Univers, tel que nous le connaissons, a émergé d'un événement d'une incommensurable densité et énergie : le *Big Bang*.
 Cet instant initial ne fut pas une explosion dans l'espace, mais plutôt une expansion de l'espace lui-même.
 Le temps, l'espace et la matière sont nés ensemble, jaillissant d'une singularité mystérieuse.
 
 Dans ses premiers instants, l'Univers était une soupe chaude et dense de particules élémentaires :
 quarks, électrons, photons et autres.
-À mesure qu'il s'étendait, cette soupe refroidit.
+À mesure qu'il s'étendait, cette soupe refroidissait.
 
 Quelques centaines de milliers d'années après le Big Bang, les quarks se lièrent pour former des protons et des neutrons,
 et ces derniers se combinèrent pour donner naissance aux premiers noyaux atomiques.
 
 Les scientifiques estiment qu'il existe environ \(10^{80}\)  atomesfootnote:atoms[Le nombre d'atomes dans l'univers
 observable est estimé à environ \(10^{80}\).
-En 2004, Carl Sagan a popularisé dans Cosmos l’idée du nombre d’atomes dans l’univers observable en discutant de l’immensité de l’éspace]
+En 2004, Carl Sagan a popularisé dans Cosmos l’idée du nombre d’atomes dans l’univers observable en discutant de l’immensité de l’espace]
 dans l'Univers visible, soit un chiffre gigantesque :
 un 1 suivi de 80 zéros. Ce nombre colossal a été calculé en combinant plusieurs observations et hypothèses.
 
@@ -32,7 +32,7 @@ Et dans un autre univers qui est l'univers *mathématique*, il existe des espace
 est plus grand que le nombre d'atomes dans l'univers visible.
 En voici deux exemples :
 
-Nous avons une sequence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
+Nous avons une séquence de lettres *``ABC``* et nous voulons trouver toutes les permutations possibles, c'est-à-dire
 **``ABC``**, **``ACB``**, **``BAC``**, **``BCA``**, **``CAB``**, **``CBA``**, soit un total de ``6``
 permutations, ce qui est facile à calculer.
 Mais imaginez que nous avons une séquence de lettres plus longue, disons ``71`` lettres!
@@ -60,7 +60,7 @@ Elle est utilisée dans de nombreux domaines comme les probabilités, les statis
 \(n! = n × (n - 1) × (n - 2) × ... × 2 × 1\)].
 Cette croissance rapide rend son calcul très coûteux en termes de complexité.
 
-Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y'a stem:[\begin{equation}9!= 362,880 \end{equation}]
+Par exemple, pour stem:[\begin{equation} 𝑛 = 10 \end{equation}] il y a stem:[\begin{equation}9!= 362,880 \end{equation}]
 chemins à explorer.
 
 Pour stem:[\begin{equation} 𝑛 = 20\end{equation}] il y a  stem:[\begin{equation} 19!≈ 1.22 * 10^{17} \end{equation}]
@@ -120,7 +120,7 @@ de manière similaire à la méthodes MVP (Minimum Viable Product), qui consiste
 produit, avec les fonctionnalités essentielles, pour tester rapidement son intérêt sur le marché.
 
 Imaginez les algorithmes évolutionnaires comme un processus de développement en plusieurs générations :
-au lieu de créer un produit final parfait dès le début, ils explorent diverses versions ``prototypes'' (solutions)
+au lieu de créer un produit final parfait dès le début, ils explorent diverses versions de solutions ou ``prototypes''
 à travers des itérations rapides.
 
 Chaque version est testée, puis les meilleures configurations sont sélectionnées, ajustées et combinées pour former
@@ -155,7 +155,7 @@ solutions *approximatives,* mais efficaces en temps raisonnable.
 
 | **Objectif**            | Générer toutes les solutions possibles. | Trouver la meilleure solution parmi toutes.
 | **Solution requise**    | Ensemble complet des permutations.      | Un chemin optimal ou quasi-optimal.
-| **Complexité**          | `O(n!)`                                 | `O(n!)` pour exact, mais métaheuristique réduit.
+| **Complexité**          | `O(n!)`                                 | `O(n!)` pour exact, mais une métaheuristique réduit.
 | **Contraintes**         | Aucune contrainte particulière.         | Inclut des contraintes spécifiques (distances, coûts).
 | **Type d'algorithme**   | Exact et déterministe.                  | Exact (impraticable à grande échelle) ou métaheuristique.
 |===
@@ -226,13 +226,13 @@ rester inaccessibles.
 Ce cycle de sélection, croisement, et mutation se répète sur plusieurs générations, et la population évolue vers
 des solutions de plus en plus optimales.
 
-=== Sratégie d'Evolution (SE)
+=== Sratégie d'Évolution (SE)
 
 La stratégie d'évolution a été introduite dans les années 1960 par *Ingo Rechenberg* et *Hans-Paul Schwefel*
 pour résoudre des problèmes
 d'optimisation complexes, principalement dans le cadre de l'ingénierie et de la conception de systèmes.
 La stratégie d’évolution se distingue des algorithmes génétiques par sa focalisation sur la mutation et
-l’adaptation des paramètres plutôt que sur le croisement.
+l’adaptation des paramètres, avec une moindre importance accordée au croisement.
 Alors que les algorithmes génétiques utilisent une combinaison de croisement, mutation et sélection pour générer de nouvelles solutions,
 la stratégie d’évolution repose principalement sur des mutations appliquées aux individus pour explorer l’espace de recherche.
 
@@ -254,9 +254,9 @@ la génération de stratégies de jeu et la création d'algorithmes d'optimisati
 === Algorithmes évolutionnaires multi-objectifs (MOEA)
 
 Les MOEA sont une classe d'algorithmes évolutionnaires conçus pour résoudre des problèmes d'optimisation multi-objectifs.
-Contrairement aux problèmes d'optimisation mono-objevtifs où un seul objectif est maximisé ou minimisé, les problèmes
+Contrairement aux problèmes d'optimisation mono-objectifs où un seul objectif est maximisé ou minimisé, les problèmes
 multi-objectifs comportent plusieurs critères contradictoires ou complémentaires à prendre en compte.
-Leur objectif est de trouver un ensemble de solutions optimales, appelées *Front Pareto* footnote:frontpareto[La frontière de Pareto,
+Leur objectif est de trouver un ensemble de solutions optimales, appelées *Front de Pareto* footnote:frontpareto[La frontière de Pareto,
 ou front de Pareto, est un concept fondamental dans l'optimisation multi-objectifs.
 Elle représente l'ensemble des solutions non dominées dans un problème où plusieurs critères ou objectifs
 sont pris en compte.
@@ -462,7 +462,7 @@ la qualité de l'air, la circulation, ou encore la gestion des déchets.].
 
 
 *La question est la suivante : comment concevoir une architecture optimale pour nos clusters `Kafka` et déterminer la configuration idéale
-des different brokers ainsi que
+des différents brokers ainsi que
 la taille des machines (`RAM`, `CPU`, `DISK`, `Network` ...) à utiliser pour chaque nœud pour minimiser la latence et
 maximiser le débit ?* L'objectif est de permettre à nos microservices d'échanger des données en temps réel tout en
 respectant des contraintes telles que la scalabilité, le temps de réponse et les coûts.
@@ -470,8 +470,8 @@ respectant des contraintes telles que la scalabilité, le temps de réponse et l
 === Résoudre le problème avec une approche traditionnelle
 Une approche classique consisterait à tester manuellement toutes les architectures et leurs configurations possibles.
 Ce qui doit être extrêmement coûteux en temps et en ressources. Une approche intuitive serait de :
-prendre une architecture arbitraire `A1` avec une configuration des composants et service `C1`, effectuer un test reel
-et attendre les résultats apres un certain délai. Ensuite, réaliser un benchmarking pour passer à une configuration `C2`, ce qui pourrait
+prendre une architecture arbitraire `A1` avec une configuration des composants et service `C1`, effectuer un test réel
+et attendre les résultats après un certain délai. Ensuite, réaliser un benchmarking pour passer à une configuration `C2`, ce qui pourrait
 impliquer des modifications telles que la taille des machines, le nombre de brokers, le nombre de partitions, etc.
 Ce processus se'rait ensuite répété pour d'autres architectures, comme `A2`, `A3`, et ainsi de suite.
 
@@ -492,7 +492,7 @@ Cet algorithme est conçu pour trouver des solutions optimales en équilibrant p
 - Réduire les coûts.
 - Maximiser la scalabilité.
 
-Tout en simulant les different configurations possibles, *NSGA-II* explore l'espace des solutions pour trouver un ensemble de solutions optimales.
+Tout en simulant les différentes configurations possibles, *NSGA-II* explore l'espace des solutions pour trouver un ensemble de solutions optimales.
 
 ==== Étapes principales de NSGA-II :
 
@@ -521,7 +521,7 @@ exploration équilibrée.
 - Recombinaison (croisement) pour générer de nouvelles configurations.
 - Mutation : Nous ajoutons des modifications aléatoires, comme réduire ou augmenter la quantité de RAM,
 ajouter un autre type de machine ou modifier les règles de mise à l'échelle automatique.
-Par exemple, une configuration avec `3 machines moyennes pourrait être mutée pour ajouter une mise à l'échelle
+Par exemple, une configuration avec `3 machines moyennes pourrait être mutée pour inclure une mise à l'échelle
 automatique en fonction de la charge.
 6. **Itérations** : Répéter le processus sur plusieurs générations pour faire converger la population vers une solution optimale.
 
@@ -560,7 +560,7 @@ complexes de notre époque, ouvrant ainsi la voie à des solutions véritablemen
 redéfiniront l’avenir du design et de l’ingénierie.
 
 
-== References
+== Références
 
 [bibliography]
 * P.J.E. Peebles, *Principles of Physical Cosmologye*, Princeton Univ Pr, Ewing, New Jersey, U.S.A, 1993.
